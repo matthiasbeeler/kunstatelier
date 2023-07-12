@@ -56,8 +56,8 @@ body, html{
 }
 
 .topContent .topimage {
-  max-width: 100vw;
-  width: 40vw;
+  max-width: 100%;
+  width: 40%;
   position: absolute;
   z-index: 11;
   top: 0px;
@@ -65,8 +65,8 @@ body, html{
 }
 
 .topContent {
-  width: 100vw;
-  max-width: 100vw;
+  width: 100%;
+  max-width: 100%;
 
   height: min-content;
 }
@@ -74,7 +74,7 @@ body, html{
 .topContent .topTitle {
   padding: 1%;
   opacity: 0;
-  max-width: 80vw;
+  max-width: 80%;
   word-wrap: break-word;
 
 }
@@ -568,4 +568,23 @@ div.fileInput{
   background-size: cover;
   background-repeat: no-repeat;
   vertical-align: middle;
+}
+
+
+
+@media (min-width: 800px) {
+
+  .content {
+    width: 30%;
+    margin-left: 35%;
+  }
+
+
+  .footer {
+    padding: 1%;
+    width: 28%;
+    margin-left: 35%;
+  }
+
+
 }

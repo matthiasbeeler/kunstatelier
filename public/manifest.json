@@ -1,0 +1,23 @@
+{
+  "background_color": "#ececec",
+  "description": "",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Kunstatelier Kollegi",
+  "orientation": "natural",
+  "scope": "/",
+  "short_name": "Kunstatelier",
+  "start_url": "/",
+  "theme_color": "#ececec",
+  "categories": [],
+  "screenshots": [],
+  "icons": [
+    {
+      "src": "/images/appIcon.png",
+      "type": "image/png",
+      "sizes": "1000x1000",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": []
+}
