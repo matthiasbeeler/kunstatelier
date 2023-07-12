@@ -1,0 +1,72 @@
+<% var title =   "Hallo "+firstName %>
+
+<!DOCTYPE html>
+<html>
+  <%- include('../modules/head.ejs', {title: title})%>
+
+  <body>
+    <div class="content">
+      <%- include('../modules/top.ejs', {title: title, noLogo: true, noBack: true, backLink: "redirect(`/`)"})%>
+      <div class="accountIcon" onclick="redirect(`/user/account/`)">
+        <img src="/images/accountIcon.svg" alt="">
+    </div>
+      <div class="spacing13"></div>
+      <div class="titleH4 placeholderColour">
+       Nächste Ateliertage
+      </div>
+      <div class="spacing5"></div>
+      <div class="atelierContainer grayShadowNoOffset">
+        <div class="aterlierTitle titleH4 titleNoMargin">
+          Dienstag, 06.07.2023 16:45 Uhr
+        </div>
+        <div class="infoList">
+          <li>Kein spezielles Themengebiet</li>
+          <li>Najda wird <strong>nicht</strong> vor Ort sein</li>
+        </div>
+
+        <div class="furtherInformation">
+          <div class="title titleH4 titleNoMargin">
+            Weitere Informationen
+          </div>
+          <div class="information">
+
+          </div>
+        </div>
+        <div class="signedUpParttakers link">
+          Eingetragene Teilnehmer: 8
+        </div>
+        <div class="smallSubmitText submitButton submitDiv grayInnerShadowNoOffset">
+          Eintragen
+        </div>
+      </div>
+      <div class="spacing10"></div>
+      <div class="atelierContainer grayShadowNoOffset">
+        <div class="aterlierTitle titleH4 titleNoMargin">
+          Donnerstag, 08.07.2023 16:45 Uhr
+        </div>
+        <div class="infoList">
+          <li>Thema: Töpfern</li>
+          <li>Najda wird vor Ort sein</li>
+        </div>
+
+        <div class="furtherInformation">
+          <div class="title titleH4 titleNoMargin">
+            Weitere Informationen
+          </div>
+          <div class="information">
+            Bitte bis am 07.07.2023 eintragen
+          </div>
+        </div>
+        <div class="signedUpParttakers link">
+          Eingetragene Teilnehmer: 5
+        </div>
+        <div class="alreadySignedUp">
+          <img src="/images/check.svg" alt="" class="check">
+          <div class="titleH4 title">Du bist bereits eingetragen </div>
+        </div>
+      </div>
+    </div>
+    <%- include('../modules/footer.ejs')%>
+
+  </body>
+</html>

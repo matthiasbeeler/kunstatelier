@@ -1,0 +1,39 @@
+<div class="topContent">
+    <%if (noBack){%>
+        <%if (!noLogo){%>
+
+    <img src="/images/topLogo.svg" class="topimage" alt=""> 
+
+    <link rel="preload" as="image" href="/images/topLogo.svg">
+    <%}%>
+
+    <%if (title !== ""){%>
+        <%if (!noLogo){%>
+
+        <div class="spacing18"></div>
+        <%}%>
+
+        <div class="topTitle">
+
+    <div class="title titleH1"><%-title%></div>
+        </div>
+        <%}%>
+        <%if (title == ""){%>
+            <div class="spacing10"></div>
+            <div class="spacing10"></div>
+            <%}%>
+    <%}%>
+    <%if (!noBack){%>
+        <div class="backButton grayShadowNoOffset" onclick='<%-backLink%>'>
+            <img class="svgWhite" src="/images/back.svg" alt="">
+        </div>
+        <%if (title !== ""){%>
+
+    
+        <div class="  buttonTitle"><div class="titleH1 title actualTitle"><%-title%></div></div>
+            <%}%>
+            <%if (title == ""){%>
+                <div class="spacing10"></div>
+                <%}%>
+        <%}%>
+</div>

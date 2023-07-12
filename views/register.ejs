@@ -1,0 +1,250 @@
+<% var title="Sign up" %>
+
+  <!DOCTYPE html>
+  <html>
+  <%- include('./modules/head.ejs', {title: "Kunstatelier" })%>
+
+    <body>
+      <div class="content">
+        <%- include('./modules/top.ejs', {title: title, noLogo: false, noBack: true, backLink: "redirect(`/`)" })%>
+            
+          <div class="firstForm">
+            <div class="spacing13">
+            </div>
+            <div class="infoContainer redInnerShadowNoOffset" style="display: none;">
+              <div class="titleH4 info">
+  
+              </div>
+          </div>
+          <div class="spacing5"></div>
+            
+              <form class="firstFormForm">
+                <input type="text" id="email" required name="input"
+                  onchange="$(this).css('border', '0.5px solid black');"
+                  oninvalid="$(this).css('border', '2px solid red');" placeholder="E-Mail" class="standardInput">
+                <div class="spacing5"></div>
+                <input type="password" id="password" required name="password"
+                  onchange="$(this).css('border', '0.5px solid black');"
+                  oninvalid=" $(this).css('border', '2px solid red');" placeholder="Passwort" class="standardInput">
+                <div class="spacing5"></div>
+                <input type="password" id="passwordCheck" required name="passwordCheck"
+                  onchange="$(this).css('border', '0.5px solid black');"
+                  oninvalid=" $(this).css('border', '2px solid red');" placeholder="Passwort" class="standardInput">
+                <div class="spacing5"></div>
+                <input type="submit" class="submitButton button grayInnerShadowNoOffset submit" value="Start signup">
+
+              </form>
+              <div class="spacing10"></div>
+              <div class="seperator"></div>
+              <div class="spacing10">
+              </div>
+
+              <input type="submit" onclick="redirect('/')"
+                class="subtileButton submitButton button grayInnerShadowNoOffset submit" value="Login">
+            </div>
+            <div class="secondForm singleForm hiddenForm">
+        <form class="secondFormForm">
+
+              <div class="titleH4 placeholderColour">
+                Schritt 2/3 - Dein Name und deine Klasse
+              </div>
+              <div class="spacing5"></div>
+              <div class="infoContainer redInnerShadowNoOffset" style="display: none;">
+                <div class="titleH4 info">
+    
+                </div>
+            </div>
+            <div class="spacing5"></div>
+              <input type="text" id="firstName" required name="firstName" onchange="$(this).css('border', '0.5px solid black');"
+                oninvalid="$(this).css('border', '2px solid red');" placeholder="Vorname" class="standardInput">
+              <div class="spacing5"></div>
+              <input type="text" id="lastName" required name="lastName"
+                onchange="$(this).css('border', '0.5px solid black');"
+                oninvalid=" $(this).css('border', '2px solid red');" placeholder="Nachname" class="standardInput">
+              <div class="spacing5"></div>
+              <input type="text" required id="class" name="class" onchange="$(this).css('border', 'none');"
+                oninvalid=" $(this).css('border', '2px solid red');" placeholder="Klasse" onfocus="showClassSelect()"
+                onclick="showClassSelect()" class="classButton standardInput">
+
+              <div class="spacing5"></div>
+              <input type="submit" class="submitButton button grayInnerShadowNoOffset submit" value="Weiter">
+              <div class="classSelect mainSelect">
+                <div class="hideSelect" onclick="hideClassSelect()">
+
+                </div>
+                <div class="inner">
+                  <div class="closeButton" onclick="hideClassSelect()">
+                    <img src="/images/cancel.svg" alt="">
+                  </div>
+                  <div class="title titleH3 noMarginTitle">
+                    Klasse
+                  </div>
+                  <div class="spacing5"></div>
+                  <div class="selectOptions">
+                    <div class="selectOption" onclick="$('.classButton').val('1a');hideClassSelect()">
+                      <div class="title titleH4 noMarginTitle noLeftMarginTitle">
+                        1a
+                      </div>
+
+                    </div>
+                    <div class="selectOption" onclick="$('.classButton').val('1b');hideClassSelect()">
+                      <div class="title titleH4 noMarginTitle noLeftMarginTitle">
+                        1b
+                      </div>
+                    </div>
+                    <div class="selectOption" onclick="$('.classButton').val('1c');hideClassSelect()">
+                      <div class="title titleH4 noMarginTitle noLeftMarginTitle">
+                        1c
+                      </div>
+                    </div>
+                    <div class="selectOption" onclick="$('.classButton').val('1d');hideClassSelect()">
+                      <div class="title titleH4 noMarginTitle noLeftMarginTitle">
+                        1d
+                      </div>
+                    </div>
+                    <div class="selectOption" onclick="$('.classButton').val('2a');hideClassSelect()">
+                      <div class="title titleH4 noMarginTitle noLeftMarginTitle">
+                        2a
+                      </div>
+                    </div>
+                    <div class="selectOption" onclick="$('.classButton').val('2b');hideClassSelect()">
+                      <div class="title titleH4 noMarginTitle noLeftMarginTitle">
+                        2b
+                      </div>
+                    </div>
+                    <div class="selectOption" onclick="$('.classButton').val('2c');hideClassSelect()">
+                      <div class="title titleH4 noMarginTitle noLeftMarginTitle">
+                        2c
+                      </div>
+                    </div>
+                    <div class="selectOption" onclick="$('.classButton').val('2d');hideClassSelect()">
+                      <div class="title titleH4 noMarginTitle noLeftMarginTitle">
+                        2d
+                      </div>
+                    </div>
+                    <div class="selectOption" onclick="$('.classButton').val('3a');hideClassSelect()">
+                      <div class="title titleH4 noMarginTitle noLeftMarginTitle">
+                        3a
+                      </div>
+                    </div>
+                    <div class="selectOption" onclick="$('.classButton').val('3b');hideClassSelect()">
+                      <div class="title titleH4 noMarginTitle noLeftMarginTitle">
+                        3b
+                      </div>
+                    </div>
+                    <div class="selectOption" onclick="$('.classButton').val('3d');hideClassSelect()">
+                      <div class="title titleH4 noMarginTitle noLeftMarginTitle">
+                        3d
+                      </div>
+                    </div>
+                    <div class="selectOption" onclick="$('.classButton').val('4a');hideClassSelect()">
+                      <div class="title titleH4 noMarginTitle noLeftMarginTitle">
+                        4a
+                      </div>
+                    </div>
+                    <div class="selectOption" onclick="$('.classButton').val('4b');hideClassSelect()">
+                      <div class="title titleH4 noMarginTitle noLeftMarginTitle">
+                        4b
+                      </div>
+                    </div>
+                    <div class="selectOption" onclick="$('.classButton').val('4c');hideClassSelect()">
+                      <div class="title titleH4 noMarginTitle noLeftMarginTitle">
+                        4c
+                      </div>
+                    </div>
+                    <div class="selectOption" onclick="$('.classButton').val('4d');hideClassSelect()">
+                      <div class="title titleH4 noMarginTitle noLeftMarginTitle">
+                        4d
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+          </form>
+
+            </div>
+      </div>
+
+      <%- include('./modules/footer.ejs')%>
+
+    </body>
+
+  </html>
+
+
+  <script>
+    function showClassSelect() {
+      $('.classButton').attr('disabled', true)
+      document.querySelector('.classButton').blur()
+      $('.classSelect').css('display', "block");
+      $('.classSelect .inner').css('bottom', '0%')
+    }
+    function hideClassSelect() {
+      $('.classButton').attr('disabled', false)
+      $('.classSelect .inner').css('bottom', "-20%")
+      $('.classSelect').css('display', "none")
+    }
+
+
+    $(".firstFormForm").submit(function (e) {
+      e.preventDefault();
+      formRedirect('first', 'second');
+    })
+    $(".secondFormForm").submit(function (e) {
+      e.preventDefault();
+      $('.errorMessage').hide()
+        $(".submit").val("Loading...")
+        $('.submit').prop('disabled', true);
+        try {
+            $.ajax({
+                url: '/signup',
+                type: 'POST',
+                cache: false,
+                data: {
+                    "email": $('#email').val(),
+                    "password": $('#password').val(),
+                    "firstName": $('#firstName').val(),
+                    "lastName": $('#lastName').val(),
+                    "class": $('#class').val(),
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                success: function (data, status, xhr) {
+                    if (data) {
+                        if (data.success == true) {
+                            $(".submit").addClass(`successButton`)
+                            $(".submit").val("Success")
+                            setTimeout(() => {
+                                window.location = "/user"
+                            }, 1000)
+                        }
+                        if (data.success == false) {
+                            $('.infoContainer').show()
+                            $('.infoContainer .info').html(data.message)
+                            $(".submit").val("Signup")
+                            $('.submit').prop('disabled', false);
+                        }
+                    }
+
+                },
+                error: function (jqXHR, textStatus, err) {
+                    $('.infoContainer').show()
+                    $('.infoContainer .info').html("An error occerd whilst communication with our server.")
+
+                    $(".submit").val("Signup")
+                    $('.submit').prop('disabled', false);
+                }
+            });
+
+
+        } catch (error) {
+            $('.infoContainer').show()
+            $('.infoContainer .info').html("An error occerd whilst communication with our server.")
+            $(".submit").val("Signup")
+            $('.submit').prop('disabled', false);
+        }
+    })
+  </script>

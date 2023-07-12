@@ -1,0 +1,571 @@
+.grayShadowNoOffset{
+  box-shadow: 0px 0px 7px #bdbdbd;
+}
+.grayInnerShadowNoOffset{
+  box-shadow: inset 0px 0px 7px #a4a4a4;
+}
+.redInnerShadowNoOffset{
+  box-shadow: inset 0px 0px 7px #ff2e2e;
+}
+.greenShadowNoOffset{
+box-shadow: 0px 0px 6px #00C52B;
+}
+
+@font-face {
+  font-family: sanFrancisco;
+  src: url(/fonts/SF-Pro-Text-Black.otf);
+  font-display: auto;
+}
+
+body {
+  --mainInfoColour: #e6e6e6;
+  --placeholderColour: #949494;
+  --darkBackgroundTextColour: #e6e6e6;
+  --mainTextColour: #000000;
+  --buttonTextColour: #cccccc;
+  --mainInputBackgroundColour: #000000;
+  --mainBackgroundColour: #ffffff;
+  --lightBackgroundColour: #ffffff;
+  --bodyBackgroundColour: #ececec;
+  --mainButtonColour: #D84128;
+  --mainAccentColour: #002EA4;
+  --logoutButton: #520000;
+  --mainShadowColour: #000000;
+  --loading: #cccccc;
+  --backdrop: rgba(0, 0, 0, 0.7);
+}
+
+*{
+  font-family: sans-serif;
+  color: var(--mainTextColour);
+  outline: none;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+body, html{
+  background: var(--bodyBackgroundColour);
+  padding: 0px;
+  margin: 0px;
+}
+
+::placeholder{
+  color: var(--placeholderColour);
+}
+
+.topContent .topimage {
+  max-width: 100vw;
+  width: 40vw;
+  position: absolute;
+  z-index: 11;
+  top: 0px;
+  right: 0px;
+}
+
+.topContent {
+  width: 100vw;
+  max-width: 100vw;
+
+  height: min-content;
+}
+
+.topContent .topTitle {
+  padding: 1%;
+  opacity: 0;
+  max-width: 80vw;
+  word-wrap: break-word;
+
+}
+
+.topContent .topTitle .title {
+  margin-top: 8%;
+}
+
+.topContent .topTitle.lessMargin {
+  margin-top: 1%;
+
+}
+
+.content {
+  position: relative;
+  min-height: 100vh;
+  opacity: 0;
+  max-width: 100vw;
+}
+
+.titleH1 {
+  margin-left: 4%;
+  font-family: -apple-system, sanFrancisco, Josefin, sans-serif;
+  font-size: 250%;
+  font-weight: 800;
+}
+
+
+.extraH1 {
+  font-size: 300%;
+}
+.titleH2{
+  margin-left: 4%;
+  font-family: -apple-system, sanFrancisco, Josefin, sans-serif;
+  font-size: 200%;
+  font-weight: 600;
+}
+.titleH3{
+  margin-left: 4%;
+  font-family: -apple-system, sanFrancisco, Josefin, sans-serif;
+  font-size: 150%;
+  font-weight: 600;
+}
+.titleH4{
+  margin-left: 4%;
+  font-family: -apple-system, sanFrancisco, Josefin, sans-serif;
+  font-size: 100%;
+  font-weight: 600;
+}
+.textMargin{
+  margin-left: 4%;
+}
+.titleNoMargin{
+  margin: 0px;
+}
+
+.spacing5{
+  padding: 2.5%;
+  width: 80%;
+}
+.spacing10{
+  padding: 5%;
+  width: 80%;
+}
+
+.spacing18{
+  padding: 9%;
+  width: 80%;
+}
+
+.spacing13{
+  padding: 6.5%;
+  width: 80%;
+}
+
+input, select{
+  background-color: #E1E1E1;
+  border: 0.5px solid black;
+  border-radius: 20px;
+  width: 86%;
+  font-weight: bolder;
+  font-size: larger;
+  padding: 3%;
+  margin-left: 4%;
+}
+
+.submitButton{
+  background-color: var(--mainButtonColour);
+  border: none;
+  color: white;
+  border-radius: 20px;
+  width: 92%;
+  font-weight: 600;
+  font-size: x-large;
+  padding: 3%;
+  margin-left: 4%;
+  font-family: -apple-system, sanFrancisco, Josefin, sans-serif;
+}
+
+.submitDiv{
+  width: 86%;
+  text-align: center;
+}
+
+.smallSubmitText{
+  font-size: large;
+}
+
+.seperator {
+  padding: 0.3% 0px 0.3% 0px;
+  background-color: var(--placeholderColour);
+  border-radius: 10px;
+  width: 83%;
+  opacity: 0.5;
+  margin-left: 8.5%;
+}
+
+.subtileButton{
+  background: transparent;
+  color: var(--mainTextColour);
+}
+
+.subtileLink{
+  color: var(--placeholderColour);
+  font-weight: bold;
+}
+
+.footer {
+  z-index: 20;
+  position: relative;
+  background-color: var(--mainBackgroundColour);
+  padding: 3%;
+  width: 94%;
+}
+
+
+.placeholderColour{
+  color: var(--placeholderColour);
+}
+
+.hiddenForm{
+  display: none;
+  opacity: 0;
+}
+
+
+
+.mainSelect{
+  display: none;
+  height: 100vh;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  position: fixed;
+  z-index: 21;
+  width: 100%;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+    background: rgba(0, 0, 0, 0.4);
+}
+.mainSelect .closeButton{
+  width: 10%;
+  margin-left: auto; 
+margin-right: 0;
+}
+.mainSelect .closeButton img{
+  height: 100%;
+  width: 100%;
+}
+
+.mainSelect .inner{
+  position: fixed;
+  bottom: -20%;
+  left: 0px;
+  width: 94%;
+  max-width: 100%;
+  padding: 3%;
+  max-height: 80vh;
+  height: fit-content;
+  border-radius: 20px 20px 0px 0px;
+  background-color: var(--bodyBackgroundColour);
+  z-index: 22;
+}
+
+.mainSelect .hideSelect{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: transparent;
+  height: 100vh;
+  width: 100%;
+}
+
+
+.selectOption *{
+  display: inline-block;
+  vertical-align: middle;
+}
+.selectOption .title{
+  width: 83%;
+  max-width: 84%;
+}
+
+.selectOption .radio{
+  margin-left: auto;
+  margin-right: 0px;
+  width: 7%;
+}
+.selectOption{
+  background: var(--lightBackgroundColour);
+  width: 90%;
+  padding: 3% 3% 3% 3%;
+  margin: 2% 2% 4% 2%;
+  border-radius: 15px;
+}
+.selectOptions{
+  max-height: 70vh;
+  overflow: scroll;
+}
+
+.infoContainer{
+  width: 88%;
+  margin-left: 4%;
+  padding: 2%;
+  border-radius: 20px;
+  background-color: var(--mainBackgroundColour);
+} 
+
+
+.accountIcon{
+  width: 10%;
+  position: absolute;
+  top: 3%;
+  right: 4%;
+}
+
+.accountIcon img{
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+
+.backButton {
+
+  display: inline-flex;
+  padding: 1%;
+  justify-content: center;
+  background: var(--mainBackgroundColour);
+  width: 9%;
+  aspect-ratio: 1/1;
+  border-radius: 20px;
+  margin-left: 3%;
+  margin-top: 2%;
+  cursor: pointer;
+}
+
+.topContent .backButton{
+  z-index: 12;
+  position: relative;
+}
+
+.backButton img {
+  width: 100%;
+}
+
+.buttonTitle{
+  display: inline-flex;
+  max-width: 80%;
+  width: 80%;
+  margin-top: 2%;
+}
+
+.buttonTitle .actualTitle{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  width: 100%;
+
+}
+
+div.groupDiv {
+  border-radius: 20px;
+  margin-left: 5%;
+  width: 90%;
+  cursor: unset;
+  padding: 1% 0px 1% 0px;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  background-color: var(--mainBackgroundColour);
+}
+
+.groupDiv .button {
+  margin-left: 3%;
+  padding: 3.5%;
+  width: 87%;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.groupDiv .button .text {
+  width: 86%;
+  display: inline-block;
+  -webkit-touch-callout: unset;
+  -webkit-user-select: unset;
+  -khtml-user-select: unset;
+  -moz-user-select: unset;
+  -ms-user-select: unset;
+  user-select: unset;
+}
+
+.groupDiv .button .text .textTitle {
+  font-size: 140%;
+  font-family: -apple-system, sanFrancisco, Josefin, sans-serif;
+  font-weight: 800;
+}
+
+.groupDiv .button .text .textContent {
+  color: var(--placeholderColour);
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  padding-top: 1%;
+}
+
+.smallTextContent {
+  font-size: x-small;
+}
+
+.groupDiv .switchButton .text {
+  width: 77%;
+  font-size: medium;
+}
+
+.groupDiv .text.hiddenText {
+  display: none;
+}
+
+.groupDiv .switchButton {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+
+.groupDiv .button .arrow {
+  position: absolute;
+  top: 50%;
+  right: 4%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  width: 8%;
+  aspect-ratio: 1/1;
+}
+
+.groupDiv .button .arrow img {
+  aspect-ratio: 1/1;
+  width: 100%;
+}
+
+
+.seperator {
+  width: 90%;
+  margin-left: 5%;
+} 
+
+.accountSection{
+  margin-left: 5%;
+  width: 90%;
+}
+
+.accountSection .profileImage{
+  width: 35%;
+  display: inline-block;
+  aspect-ratio: 1/1;
+}
+
+.accountSection .profileImage img{
+  width: 100%;
+}
+
+.accountSection .accountInfo{
+  width: 59%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.accountSection .accountInfo *{
+  overflow-wrap: break-word;
+  width: 100%;
+}
+
+.atelierContainer{
+  width: 86%;
+  margin-left: 4%;
+  background-color: var(--mainBackgroundColour);
+  padding: 3% 3% 3% 3%;
+  border-radius: 20px;
+}
+.atelierContainer .titleH4, .atelierContainer .infoList{
+  padding: 1%;
+}
+
+.furtherInformation .information{
+  padding-bottom: 4%;
+  padding-left: 1%;
+}
+.furtherInformation *{
+  padding: 0px;
+  padding-top: 0px;
+}
+
+
+.signedUpParttakers{
+  margin-bottom: 2%;
+}
+
+.link{
+  font-weight: normal;
+  text-decoration: underline;
+}
+
+.alreadySignedUp{
+  display: flex;
+    align-items: center;
+}
+
+.alreadySignedUp *{
+  display: inline-block;
+}
+.alreadySignedUp img{
+  width: 10%;
+}
+
+.alreadySignedUp .title{
+  width: 80%;
+  font-size: 110%;
+}
+
+.fileInput{
+  background-color: var(--mainBackgroundColour);
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 85%;
+    font-weight: bolder;
+    font-size: larger;
+    padding: 3%;
+    margin-left: 4%;
+}
+
+.fileInput .placeholderText {
+  text-align: center;
+}
+
+.fileInput .filePreview {
+  padding: 0px;
+  margin: 0px;
+  width: 98%;
+  border-radius: 20px;
+  margin-bottom: 1%;
+}
+
+.fileInput .typeText {
+  text-align: left;
+}
+
+div.fileInput{
+    background-color: var(--mainBackgroundColour);
+}
+
+.profileImage {
+  position: relative;
+  width: 30%;
+  aspect-ratio: 1/1;
+  clip-path: circle(45%);
+  display: inline-block;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}

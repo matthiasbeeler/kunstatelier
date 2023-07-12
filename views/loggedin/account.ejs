@@ -1,0 +1,90 @@
+<% var title =   "Account" %>
+
+<!DOCTYPE html>
+<html>
+  <%- include('../modules/head.ejs', {title: title})%>
+
+  <body>
+    <div class="content">
+      <%- include('../modules/top.ejs', {title: title, noLogo: true, noBack: false, backLink: "redirect(`/user`)"})%>
+      <div class="spacing13"></div>
+      <div class="accountSection">
+            <div class="profileImage imageContainer" style="background-image: url('/user/uploads/profileImages/<%-data.id%>.webp?v=<%=data.profileImageUpdate%>');">
+        </div>
+        <div class="accountInfo">
+            <div class="name titleH2">
+                <%=data.firstName%> <%=data.lastName%>
+            </div>
+            <div class="email textMargin">
+                <%=data.email%>
+            </div>
+        </div>
+      </div>
+      <div class="spacing5"></div>
+      <div class="groupDiv groupSubmit submit grayInnerShadowNoOffset">
+        <div class="button" onclick="redirect('/user/account/personalDetails')">
+            <div class="text">
+                <div class="textTitle">Persönliche Angaben</div>
+            </div>
+            <div class="arrow"><img src="/images/arrow.svg" alt=""></div>
+        </div>
+        <div class="seperator"></div>
+        <div class="button" onclick="redirect('/user/account/profileImage')">
+            <div class="text">
+                <div class="textTitle">Profilbild</div>
+            </div>
+            <div class="arrow"><img src="/images/arrow.svg" alt=""></div>
+        </div>
+        <div class="seperator"></div>
+
+        <div class="button">
+            <div class="text">
+                <div class="textTitle">E-Mail Adresse</div>
+            </div>
+            <div class="arrow"><img src="/images/arrow.svg" alt=""></div>
+        </div>
+        <div class="seperator"></div>
+
+        <div class="button">
+            <div class="text">
+                <div class="textTitle">Account ID</div>
+                <div class=" smallTextContent textContent accountID"><%=data.id%></div>
+            </div>
+        </div>
+        <!--        <div class="seperator"></div>
+
+        <div class="button" onclick="redirect('/account/settings/profileImage')">
+            <div class="text">
+                <div class="textTitle">Profilbild</div>
+                                    <div class="textContent profilePicture"></div>
+
+                <div class="arrow"><img src="/assets/svg/arrow.svg" alt=""></div>
+            </div>
+           
+        </div>
+-->
+
+</div>
+<div class="spacing5"></div>
+            <div class="groupDiv groupSubmit submit grayInnerShadowNoOffset">
+                <div class="button" onclick="redirect('/account/settings/password')">
+                    <div class="text">
+                    <div class="textTitle">Passwort</div>
+                </div>
+                <div class="arrow"><img src="/images/arrow.svg" alt=""></div>
+            </div>
+        </div>
+<div class="spacing5"></div>
+<div class="groupDiv groupSubmit submit redInnerShadowNoOffset">
+    <div class="button" onclick="localStorage.clear();redirect('/user/logout')">
+        <div class="text">
+        <div class="textTitle">Logout</div>
+    </div>
+    <div class="arrow"><img src="/images/logout.svg" alt=""></div>
+</div>
+</div>
+    </div>
+    <%- include('../modules/footer.ejs')%>
+
+  </body>
+</html>

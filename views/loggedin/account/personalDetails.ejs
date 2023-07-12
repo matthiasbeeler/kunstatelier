@@ -1,0 +1,38 @@
+<% var title =   "Persönliche Angaben" %>
+
+<!DOCTYPE html>
+<html>
+  <%- include('../../modules/head.ejs', {title: title})%>
+
+  <body>
+    <div class="content">
+      <%- include('../../modules/top.ejs', {title: title, noLogo: true, noBack: false, backLink: "redirect(`/user/account`)"})%>
+      <div class="spacing13"></div>
+      <div class="titleH4 placeholderColour">Um deine Persönlichen Angaben zu ändern, musst Du einen Administrator kontaktieren.</div>
+      <div class="spacing5"></div>
+  
+      <div class="titleH3">Vorname</div>
+        <div class="textMargin"><%-data.firstName%></div>
+      <div class="spacing5"></div>
+      <div class="titleH3">Nachname</div>
+      <div class="textMargin"><%-data.lastName%></div>
+      <div class="spacing5"></div>
+      <div class="titleH3">Klasse</div>
+      <div class="textMargin"><%-data.class%></div>
+      <div class="spacing5"></div>
+      <div class="titleH3">Registration</div>
+      <div class="textMargin">
+        <%-new Date(data.registrationTimestamp*1).toLocaleDateString('de-CH')%>, <%-new Date(data.registrationTimestamp*1).toLocaleTimeString('de-CH')%>
+      </div>
+      <div class="spacing5"></div>
+
+      <div class="titleH3">Organisation</div>
+      <div class="textMargin">
+       Kollegi Schwyz
+      </div>
+   
+    </div>
+    <%- include('../../modules/footer.ejs')%>
+
+  </body>
+</html>
