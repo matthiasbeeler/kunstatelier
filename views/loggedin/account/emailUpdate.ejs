@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="spacing5"></div>
-        <form>
+        <form id="form">
             <input type="email" id="email" required name="email" onchange="$(this).css('border', '0.5px solid black');"
             oninvalid="$(this).css('border', '2px solid red');" placeholder="Neue E-Mail"
             class="standardInput">
@@ -43,7 +43,7 @@
 <script>
     $("form").submit(function(e) {
        e.preventDefault();
-       
+       const form = document.getElementById("form");
        try {
            
            $.ajax({
@@ -53,7 +53,7 @@
                contentType: false,
                async: false,
                cache: false,
-               data: $('form').serializeArray,
+               data:  new FormData(form),
                crossDomain: true,
                success: function (data, status, xhr) {
                    if (data) {

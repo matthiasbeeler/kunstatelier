@@ -6,6 +6,7 @@ exports.updateEmail = function (request, response, database) {
     var email = request.body.email;
     var password = request.body.password;
     try {
+        console.log(password)
         database.query(
             `SELECT * FROM accounts WHERE  id = ? AND password = ?`,
             [
@@ -25,6 +26,26 @@ exports.updateEmail = function (request, response, database) {
                   });
                 if(results.length > 0){
                     database.query(
+                        `SELECT * FROM accounts WHERE  email = ?`,
+                        [
+                           email
+                        ],
+                        function (error, results, fields) {
+                            if (error) console.log(error);
+                if (error)
+                  return response.json({
+                    success: false,
+                    error: 4,
+                    message: "An error occured.",
+                  });
+                            if(results.length > 0){
+                                return response.json({
+                                    success: false,
+                                    error: 4,
+                                    message: "E-Mail Adresse wird bereits benuzt",
+                                  });
+                            }else{
+                    database.query(
                         `UPDATE accounts SET email = ? WHERE  id = ? AND password = ?`,
                         [
                             email,
@@ -42,8 +63,10 @@ exports.updateEmail = function (request, response, database) {
                     success: false,
                     error: 4,
                     message: "An error occured.",
-                  });
+                  })
                 })
+            }
+                })  
                 }else{
                     return response.json({
                         success: false,
