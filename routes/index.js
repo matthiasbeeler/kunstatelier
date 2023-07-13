@@ -26,8 +26,6 @@ router.all(["/", "/signup"], function (req, res, next) {
     next()
     console.log(error)
 }
-
-
 })
 
 /* GET home page. */
@@ -46,5 +44,9 @@ router.get('/signup', function(req, res, next) {
 router.post('/signup', function(req, res, next) {
   signup(req, res, database,bouncer)
 });
+
+setInterval(function () {
+  database.query('SELECT 1')
+}, 10000);
 
 module.exports = router;

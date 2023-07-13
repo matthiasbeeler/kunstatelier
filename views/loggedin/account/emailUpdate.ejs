@@ -1,0 +1,103 @@
+<% var title =   "E-Mail Adresse" %>
+
+<!DOCTYPE html>
+<html>
+  <%- include('../../modules/head.ejs', {title: title})%>
+
+  <body>
+    <div class="content">
+      <%- include('../../modules/top.ejs', {title: title, noLogo: true, noBack: false, backLink: "redirect(`/user/account`)"})%>
+      <div class="spacing13"></div>
+      <div class="titleH4 placeholderColour">
+        Deine momentane E-Mail Adresse ist: <%=data.email%>
+      </div>
+      <div class="spacing5"></div>
+      <div class="infoContainer redInnerShadowNoOffset" style="display: none;">
+        <div class="titleH4 info">
+
+        </div>
+    </div>
+    <div class="spacing5"></div>
+        <form>
+            <input type="email" id="email" required name="email" onchange="$(this).css('border', '0.5px solid black');"
+            oninvalid="$(this).css('border', '2px solid red');" placeholder="Neue E-Mail"
+            class="standardInput">
+            <div class="spacing5"></div>
+            <input type="email" id="emailCheck" required name="emailCheck" onchange="$(this).css('border', '0.5px solid black');"
+            oninvalid="$(this).css('border', '2px solid red');" placeholder="E-Mail wiederholen"
+            class="standardInput">
+            <div class="spacing5"></div>
+        <input type="password" id="password" required name="password" onchange="$(this).css('border', '0.5px solid black');"
+            oninvalid=" $(this).css('border', '2px solid red');" placeholder="Passwort"
+            class="standardInput">
+    <div class="spacing5"></div>
+    <input type="submit" class="submitButton button grayInnerShadowNoOffset submit" value="E-Mail updaten">
+</form>
+    </div>
+    <%- include('../../modules/footer.ejs')%>
+
+  </body>
+</html>
+
+
+<script>
+    $("form").submit(function(e) {
+       e.preventDefault();
+       
+       try {
+           
+           $.ajax({
+               url: '/user/account/emailUpdate/',
+               type: 'POST',
+               processData: false,
+               contentType: false,
+               async: false,
+               cache: false,
+               data: $('form').serializeArray,
+               crossDomain: true,
+               success: function (data, status, xhr) {
+                   if (data) {
+
+                       if (data.success == true) {
+                           $(".submit").val("Success")
+                           $(".submit").addClass(`successButton`)
+                           setTimeout(() => {
+                              redirect('/user/account')
+                           }, 1000)
+                       }
+                       if (data.success == false) {
+                           $(".submit").val("Profilbild updaten")
+                           $('.submit').prop('disabled', false);
+                           $('.infoContainer').show()
+                           $('.infoContainer .info').html(data.message)
+                           $(".content").css("opacity", "1");
+
+                           
+                       }
+                   }
+
+               },
+               error: function (jqXHR, textStatus, err) {
+                   $(".content").css("opacity", "1");
+
+                   $('.fileInput').show()
+                   $('.infoContainer').show()
+                   $('.infoContainer .info').html("An error occerd whilst communication with our server.")
+
+                   $(".submit").val("Profilbild updaten")
+                   $('.submit').prop('disabled', false);
+               }
+           });
+
+
+       } catch (error) {
+           console.log(error)
+           $(".content").css("opacity", "1");
+           $('.infoContainer').show()
+           $('.fileInput').show()
+           $('.infoContainer .info').html("An error occerd whilst communication with our server.")
+           $(".submit").val("Profilbild updaten")
+           $('.submit').prop('disabled', false);
+       }
+   })
+</script>

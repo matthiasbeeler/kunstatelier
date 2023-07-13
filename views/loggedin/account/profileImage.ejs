@@ -9,6 +9,12 @@
       <%- include('../../modules/top.ejs', {title: title, noLogo: true, noBack: false, backLink: "redirect(`/user/account`)"})%>
       <div class="spacing13"></div>
         <form>
+            <div class="infoContainer redInnerShadowNoOffset" style="display: none;">
+                <div class="titleH4 info">
+        
+                </div>
+            </div>
+            <div class="spacing5"></div>
       <div class="fileInput standardInput submit grayShadowNoOffset" onclick="document.querySelector('#fileInput').click();">
         <img src="" alt="" class="filePreview" style="display: none;">
 
@@ -49,19 +55,19 @@
     $("form").submit(function(e) {
        e.preventDefault();
        if(!$('#fileInput')[0].files[0]){
-           $('.errorMessage').show()
-       return $('.errorMessage .messageText').html(errorMessages[4])
+           $('.infoContainer').show()
+       return $('.infoContainer .info').html(errorMessages[4])
    };
        if($('#fileInput')[0].files[0].size > 10097152){
-       $('.errorMessage').show()
-       return $('.errorMessage .messageText').html(errorMessages[3])
+       $('.infoContainer').show()
+       return $('.infoContainer .info').html(errorMessages[3])
    };
        $('.errorMessageForm').hide()
        $(".submit").val("Loading...")
        $('.submit').prop('disabled', true);
        if($('#fileInput')[0].files[0].size > 10097152){
-       $('.errorMessage').show()
-       return $('.errorMessage .messageText').html(errorMessages[3])
+       $('.infoContainer').show()
+       return $('.infoContainer .info').html(errorMessages[3])
    };
    $('.content').css('opacity', "0")
        try {
@@ -91,8 +97,8 @@
                        if (data.success == false) {
                            $(".submit").val("Profilbild updaten")
                            $('.submit').prop('disabled', false);
-                           $('.errorMessage').show()
-                           $('.errorMessage').html(data.message)
+                           $('.infoContainer').show()
+                           $('.infoContainer .info').html(data.message)
                            $(".content").css("opacity", "1");
 
                            
@@ -104,8 +110,8 @@
                    $(".content").css("opacity", "1");
 
                    $('.fileInput').show()
-                   $('.errorMessage').show()
-                   $('.errorMessage').html("An error occerd whilst communication with our server.")
+                   $('.infoContainer').show()
+                   $('.infoContainer .info').html("An error occerd whilst communication with our server.")
 
                    $(".submit").val("Profilbild updaten")
                    $('.submit').prop('disabled', false);
@@ -116,9 +122,9 @@
        } catch (error) {
            console.log(error)
            $(".content").css("opacity", "1");
-           $('.errorMessage').show()
+           $('.infoContainer').show()
            $('.fileInput').show()
-           $('.errorMessage').html("An error occerd whilst communication with our server.")
+           $('.infoContainer .info').html("An error occerd whilst communication with our server.")
            $(".submit").val("Profilbild updaten")
            $('.submit').prop('disabled', false);
        }

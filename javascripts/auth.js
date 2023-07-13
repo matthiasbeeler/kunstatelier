@@ -65,7 +65,8 @@ exports.login = function (request, response, database, bouncer) {
             lastName: userData[0].lastName,
             class: userData[0].class,
             admin: admin,
-            registrationTimestamp: userData[0].registrationTimestamp
+            registrationTimestamp: userData[0].registrationTimestamp,
+            profileImageUpdate: userData[0].profilePictureUpdate
           },
           process.env.jwtSecret
         );

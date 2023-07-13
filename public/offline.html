@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>You're offline</title>
+</head>
+
+<body>
+    <center>
+        <div class="textContainer">
+            <h1><span class="word"></span>-Internet; es ist weg :(</h1>
+            <br>
+            <a onclick="location.reload();">Reload</a>
+        </div>
+    </center>
+</body>
+
+</html>
+
+<style>
+    * {font-family: sans-serif;
+    }
+
+    .textContainer{ color: #202020;
+    font-family: sans-serif;
+    font-weight: lighter;
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    top: 37%;
+    }
+
+    body {background-color: #ececec;
+    }
+</style>
+
+<script>
+
+    var words = ["Bücherbrett",
+
+        "Cabernet"
+        ,
+
+        "Dreierset"
+        ,
+
+        "Ethernet"
+        ,
+
+        "Federbett"
+        ,
+
+        "Federbrett"
+        ,
+
+        "Fensterbrett"
+        ,
+
+        "Feuerbett"
+        ,
+
+        "Fibernet"
+        ,
+
+        "Filterbett"
+        ,
+
+        "Futterbrett"
+        ,
+
+        "Gebärbett"
+        ,
+
+        "Gitterbett"
+        ,
+
+        "Gletscherjet"
+        ,
+
+        "Hühnerfett"
+        ,
+
+        "Kinderbett"
+        ,
+
+        "Körperfett"
+        ,
+
+        "Laserjet"
+        ,
+
+        "Leberbett"
+        ,
+
+        "Lederfett"
+        ,
+
+        "Lotterbett"
+        ,
+
+        "Mauerbett"
+        ,
+
+        "Messerset"
+        ,
+
+        "Mutterbett"
+        ,
+
+        "Mutterbrett"
+        ,
+
+        "Oberbett"
+        ,
+
+        "Overhead"
+        ,
+
+        "Polsterbett"
+        ,
+
+        "Pulverbett"
+        ,
+
+        "Rinderfett"
+        ,
+
+        "Rollerbrett"
+        ,
+
+        "Schleuderbrett"
+        ,
+
+        "Schotterbett"
+        ,
+
+        "Somerset"
+        ,
+
+        "Speicherfett"
+        ,
+
+        "Starterset"
+        ,
+
+        "Staufferfett"
+        ,
+
+        "Superhet"
+        ,
+
+        "Superjet"
+        ,
+
+        "Tellerbrett"
+        ,
+
+        "Unterbett"
+        ,
+
+        "Viererbrett"
+        ,
+
+        "Wanderbett"
+        ,
+
+        "Wasserbett"
+        ,
+
+        "Wasserjet"
+        ,
+
+        "Zweierbett"
+        ,
+
+        "Zweierset"
+        ,
+
+        "abhärtet"
+        ,
+
+        "absperrtet"
+        ,
+
+        "abwehrtet"
+        ,
+
+        "abwertet"
+        ,
+
+        "ackertet"
+        ,
+
+        "aufklärtet"
+        ,
+
+        "aufwertet"
+        ,
+
+        "aushärtet"
+        ,
+
+        "ausmerzet"
+        ,
+
+        "ausschertet"
+        ,
+
+        "auswertet"
+        ,
+
+        "baggertet"
+        ,
+
+        "bechertet"
+        ,
+
+        "bewertet"
+        ,
+
+        "blättertet"
+        ,
+
+        "buttertet"
+        ,
+
+        "chartertet"
+        ,
+
+        "dauertet"
+        ,
+
+        "enthärtet"
+        ,
+
+        "entwertet"
+        ,
+
+        "erhärtet"
+        ,
+
+        "federtet"
+        ,
+
+        "feuertet"
+        ,
+
+        "fiebertet"
+        ,
+
+        "filtertet"
+        ,
+
+        "foltertet"
+        ,
+
+        "fordertet"
+        ,
+
+        "freiwerdet"
+        ,
+
+        "futtertet"
+        ,
+
+        "gebärdet"
+        ,
+
+        "geerdet"
+        ,
+
+        "gefährdet"
+        ,
+
+        "gehärtet"
+        ,
+
+        "gewertet"
+        ,
+
+        "hämmertet"
+        ,
+
+        "kaudertet"
+        ,
+
+        "kauertet"
+        ,
+
+        "kellertet"
+        ,
+
+        "klammertet"
+        ,
+
+        "klettertet"
+        ,
+
+        "knausertet"
+        ,
+
+        "kümmertet"
+        ,
+
+        "lagertet"
+        ,
+
+        "lauertet"
+        ,
+
+        "liefertet"
+        ,
+
+        "mauertet"
+        ,
+
+        "mausertet"
+        ,
+
+        "meistertet"
+        ,
+
+        "mustertet"
+        ,
+
+        "opfertet"
+        ,
+
+        "pflastertet"
+        ,
+
+        "plaudertet"
+        ,
+
+        "plündertet"
+        ,
+
+        "puffertet"
+        ,
+
+        "rudertet"
+        ,
+
+        "schaudertet"
+        ,
+
+        "schauertet"
+        ,
+
+        "sintertet"
+        ,
+
+        "sondertet"
+        ,
+
+        "speichertet"
+        ,
+
+        "steuertet"
+        ,
+
+        "supernett"
+        ,
+
+        "säuertet"
+        ,
+
+        "trauertet"
+        ,
+
+        "töpfertet"
+        ,
+
+        "verhärtet"
+        ,
+
+        "versehrtet"
+        ,
+
+        "verwertet"
+        ,
+
+        "wandertet"
+        ,
+
+        "wassertet"
+        ,
+
+        "wettertet"
+        ,
+
+        "wundertet"
+        ,
+
+        "zaubertet"
+        ,
+
+        "zaudertet"
+        ,
+
+        "zimmertet"
+        ,
+
+        "zuckertet"
+        ,
+
+        "Überbett"
+
+    ]
+
+
+    var num = Math.floor(Math.random() * 122);
+    document.querySelector('.word').innerHTML = words[num]
+
+</script>

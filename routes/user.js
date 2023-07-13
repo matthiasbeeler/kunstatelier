@@ -4,7 +4,24 @@ const jwt = require("jsonwebtoken");
 const { updateImage } = require('../javascripts/updateImage');
 const { database } = require('../services/database');
 const { validate } = require("uuid");
-const fs = require('fs')
+const fs = require('fs');
+const { updateEmail } = require('../javascripts/updateEmail');
+
+router.all("*", function (req, res, next) {
+  try {
+  if(req.cookies.NyvAuth){
+    if(jwt.verify(req.cookies.NyvAuth, process.env.jwtSecret).loggedin) return next()
+  }
+  if(!req.cookies.NyvAuth){
+    if(!jwt.verify(req.cookies.NyvAuth, process.env.jwtSecret).loggedin) return res.redirect('/')
+  }
+    
+} catch (error) {
+  console.log(error)
+
+  return res.redirect('/')
+}
+})
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -12,7 +29,36 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/account', function(req, res, next) {
-  res.render('loggedin/account', {data: jwt.verify(req.cookies.NyvAuth, process.env.jwtSecret)})
+  database.query(
+    "SELECT * FROM accounts WHERE id = ?",
+    [
+      jwt.verify(req.cookies.NyvAuth, process.env.jwtSecret).id,
+    ],
+    function (err, results, fields) {
+      var userData = results
+      var token = jwt.sign(
+        {
+          email: userData[0].email,
+          id: userData[0].id,
+          loggedin: true,
+          active: userData[0].active,
+          firstName: userData[0].firstName,
+          lastName: userData[0].lastName,
+          class: userData[0].class,
+          admin: userData[0].admin,
+          registrationTimestamp: userData[0].registrationTimestamp,
+          profileImageUpdate: userData[0].profilePictureUpdate
+        },
+        process.env.jwtSecret
+      );
+      res.cookie("NyvAuth", token, {
+        maxAge: 9999 * 60 * 60 * 1000,
+        httpOnly: false,
+        overwrite: true,
+      });
+      return res.render('loggedin/account', {data: jwt.verify(token, process.env.jwtSecret)})
+
+    })
 });
 
 router.get('/account/personalDetails', function(req, res, next) {
@@ -25,6 +71,14 @@ router.get('/account/profileImage', function(req, res, next) {
 
 router.post("/account/profileImage", function (req, res) {
   updateImage(req, res, database);
+});
+
+router.get('/account/emailUpdate', function(req, res, next) {
+  res.render('loggedin/account/emailUpdate', {data: jwt.verify(req.cookies.NyvAuth, process.env.jwtSecret)})
+});
+
+router.post('/account/emailUpdate', function(req, res, next) {
+  updateEmail(req, res, database)
 });
 
 router.all('/uploads/profileImages/:id', function(req, res, next) {
