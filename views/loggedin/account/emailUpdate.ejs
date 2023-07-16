@@ -66,7 +66,7 @@
                            }, 1000)
                        }
                        if (data.success == false) {
-                           $(".submit").val("Profilbild updaten")
+                           $(".submit").val("E-Mail updaten")
                            $('.submit').prop('disabled', false);
                            $('.infoContainer').show()
                            $('.infoContainer .info').html(data.message)
@@ -84,7 +84,7 @@
                    $('.infoContainer').show()
                    $('.infoContainer .info').html("An error occerd whilst communication with our server.")
 
-                   $(".submit").val("Profilbild updaten")
+                   $(".submit").val("ProfilbE-Mailild updaten")
                    $('.submit').prop('disabled', false);
                }
            });
@@ -96,7 +96,7 @@
            $('.infoContainer').show()
            $('.fileInput').show()
            $('.infoContainer .info').html("An error occerd whilst communication with our server.")
-           $(".submit").val("Profilbild updaten")
+           $(".submit").val("E-Mail updaten")
            $('.submit').prop('disabled', false);
        }
    })

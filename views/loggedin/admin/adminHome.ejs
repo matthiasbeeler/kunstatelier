@@ -1,0 +1,18 @@
+<% var title =   "Admin" %>
+
+<!DOCTYPE html>
+<html>
+  <%- include('../../modules/head.ejs', {title: title})%>
+
+  <body>
+    <div class="content">
+      <%- include('../../modules/top.ejs', {title: title, noLogo: true, noBack: false, backLink: "redirect(`/user`)"})%>
+      <div class="spacing13"></div>
+      <div onclick="redirect('/admin/participants')" class="smallSubmitText submitButton submitDiv grayInnerShadowNoOffset">
+       Teilnehmer verwalten
+      </div>
+    </div>
+    <%- include('../../modules/footer.ejs')%>
+
+  </body>
+</html>

@@ -1,0 +1,85 @@
+<% var title="Freischaltung" %>
+
+  <!DOCTYPE html>
+  <html>
+  <%- include('../../modules/head.ejs', {title: "Kunstatelier" })%>
+
+    <body>
+      <div class="content">
+        <%- include('../../modules/top.ejs', {title: title, noLogo: false, noBack: true, backLink: "redirect(`/`)" })%>
+            
+            
+          <div class="titleH4 placeholderColour lightText">
+            Schritt 3/3 - Ein Admin muss Dich freischalten
+          </div>
+          <div class="spacing5"></div>
+          <div class="infoContainer redInnerShadowNoOffset" style="display: none;">
+            <div class="titleH4 info">
+
+            </div>
+        </div>
+          <div class="spacing5"></div>
+
+          <div class="titleH3">Nun musst'e warten.</div>
+          <div class="spacing5"></div>
+              <div class="titleH4 lightText">
+                Sobald Du von einem Admin freigeschaltet worden bist, erhälst du eine E-Mail und kannst auf die Plattform zugreifen.
+              </div>
+              
+      </div>
+
+      <%- include('../../modules/footer.ejs')%>
+
+    </body>
+
+  </html>
+
+
+  <script>
+
+checkStatus();
+setInterval(() => {
+    checkStatus();
+}, 30000);
+
+function checkStatus() {
+    try {
+            $.ajax({
+                url: '/user/checkActivationStatus',
+                type: 'POST',
+                cache: false,
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                success: function (data, status, xhr) {
+                    if (data) {
+                        console.log(data)
+                        if (data.success == true) {
+                                redirect('/user');
+                        }
+                        if (data.success == false) {
+                         
+                        }
+                    }
+
+                },
+                error: function (jqXHR, textStatus, err) {
+                    $('.infoContainer').show()
+                    $('.infoContainer .info').html("An error occerd whilst communication with our server.")
+
+                    $(".submit").val("Signup")
+                    $('.submit').prop('disabled', false);
+                }
+            });
+
+
+        } catch (error) {
+            $('.infoContainer').show()
+            $('.infoContainer .info').html("An error occerd whilst communication with our server.")
+            $(".submit").val("Signup")
+            $('.submit').prop('disabled', false);
+        }
+}
+        
+  </script>

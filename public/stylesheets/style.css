@@ -2,13 +2,17 @@
   box-shadow: 0px 0px 7px #bdbdbd;
 }
 .grayInnerShadowNoOffset{
-  box-shadow: inset 0px 0px 7px #a4a4a4;
+  box-shadow: inset 0px 0px 7px #00000048
 }
 .redInnerShadowNoOffset{
   box-shadow: inset 0px 0px 7px #ff2e2e;
 }
 .greenShadowNoOffset{
 box-shadow: 0px 0px 6px #00C52B;
+}
+
+.orangeShadowNoOffset{
+  box-shadow: 0px 0px 6px #ffa600;
 }
 
 @font-face {
@@ -68,7 +72,7 @@ body, html{
 .topContent {
   width: 100%;
   max-width: 100%;
-
+  overflow-x: hidden;
   height: min-content;
 }
 
@@ -125,6 +129,9 @@ body, html{
   font-size: 100%;
   font-weight: 600;
 }
+.lightText{
+  font-weight: normal
+}
 .textMargin{
   margin-left: 4%;
 }
@@ -160,6 +167,11 @@ input, select{
   font-size: larger;
   padding: 3%;
   margin-left: 4%;
+}
+
+select{
+  width: 92%;
+
 }
 
 .submitButton{
@@ -306,7 +318,7 @@ margin-right: 0;
 
 
 .accountIcon{
-  width: 10%;
+  width: 13%;
   position: absolute;
   top: 3%;
   right: 4%;
@@ -320,10 +332,10 @@ margin-right: 0;
 .backButton {
 
   display: inline-flex;
-  padding: 1%;
+  padding: 0%;
   justify-content: center;
   background: var(--mainBackgroundColour);
-  width: 9%;
+  width: 13%;
   aspect-ratio: 1/1;
   border-radius: 20px;
   margin-left: 3%;
@@ -341,7 +353,7 @@ margin-right: 0;
 }
 
 .buttonTitle{
-  display: inline-flex;
+  display: inline-block;
   max-width: 80%;
   width: 80%;
   margin-top: 2%;
@@ -501,6 +513,41 @@ div.groupDiv {
   padding-top: 0px;
 }
 
+.participantContainer .participantInfo{
+  width: 87%;
+  display: inline-block;
+}
+
+.participantContainer{
+  display: flex;
+  justify-content:center;
+}
+
+.participantContainer .arrow{
+  width: 10%;
+  display: inline-block;
+}
+
+.warningContainer{
+  display: flex;
+  justify-content: center;
+}
+
+.warningContainer .title {
+  display: inline-block;
+  height: fit-content;
+  width: 76%;
+}
+
+.warningContainer .warningSymbol{
+  display: inline-block;
+  width: 18%;
+}
+
+.warningContainer .warningSymbol img{
+  width: 100%;
+}
+
 
 .signedUpParttakers{
   margin-bottom: 2%;
@@ -571,7 +618,13 @@ div.fileInput{
   vertical-align: middle;
 }
 
-
+.errorMessage.redInnerShadowNoOffset{
+  width: 86%;
+  padding: 3%;
+  margin-left: 4%;
+  background: white;
+  border-radius: 20px;
+}
 
 @media (min-width: 800px) {
 

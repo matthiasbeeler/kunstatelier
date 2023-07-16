@@ -8,7 +8,7 @@ exports.updateImage = function (request, response, database) {
     if(image.size > 5597152) return response.json({ success: false, message: "Your images size is too big" }); 
   sharp(image.data)
    .rotate()
-    .webp({ quality:40 })
+    .webp({ quality:50 })
     .toFile(process.cwd() + '/uploads/profileImages/' + jwtData.id+".webp", (err, info) => { console.log(err)});
   //image.mv(process.cwd() + '/public/uploads/profileImages/' + jwtData.id + fileType);
   database.query(

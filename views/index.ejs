@@ -16,7 +16,7 @@
         </div>
         <div class="spacing5"></div>
 
-      <input type="text" id="input" required name="input" onchange="$(this).css('border', '0.5px solid black');"
+      <input type="email" id="input" required name="input" onchange="$(this).css('border', '0.5px solid black');"
       oninvalid="$(this).css('border', '2px solid red');" placeholder="E-Mail"
       class="standardInput">
       <div class="spacing5"></div>
@@ -32,9 +32,10 @@
       <center>
       <a class="subtileLink" href="">Passwort vergessen</a>
     </center>
+</form>
+
       <div class="spacing5"></div>
       <input type="submit" onclick="redirect('/signup')" class="subtileButton submitButton button grayInnerShadowNoOffset submit" value="Account erstellen">
-    </form>
     </div>
     <%- include('./modules/footer.ejs')%>
 

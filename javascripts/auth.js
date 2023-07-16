@@ -112,15 +112,15 @@ exports.signup = function (request, response, database) {
       validator.isEmpty(grade) ||
       validator.isEmpty(password)
     )
-      return response.json({ success: false, error: 1 });
+      return response.json({ success: false, error: 1, message:"Bitte fülle alle Felder aus." });
     if (!validator.isEmail(email))
-      return response.json({ success: false, error: 1 });
+      return response.json({ success: false, error: 1,  message:"Diese E-Mail Adresse ist ungültig."  });
     database.query(
       `SELECT * FROM accounts WHERE email = ?;`,
       [email],
       function (error, results, fields) {
         if (!results.length <= 0)
-          return response.json({ success: false, error: 2 });
+          return response.json({ success: false, error: 2, message: "Diese E-Mail Adresse wird bereits genutzt." });
         var uuid = uuidv4();
 
         database.query(
@@ -135,13 +135,14 @@ exports.signup = function (request, response, database) {
               .createHash("sha256")
               .update(password + process.env.salt)
               .digest("hex"),
-            ,
-            false,
+            0,
             Date.now(),
           ],
           function (error, results, fields) {
             if (error) console.log(error);
-            if (error) return response.json({ success: false, error: 3 });
+            if (error) return response.json({ success: false, error: 3,
+              message: "Ein Fehler ist aufgetreten.",
+            });
             var token = jwt.sign(
               {
                 id: uuid,
@@ -168,5 +169,8 @@ exports.signup = function (request, response, database) {
     );
   } catch (error) {
     console.log(error);
+    if (error) return response.json({ success: false, error: 3,
+      message: "Ein Fehler ist aufgetreten.",
+    });
   }
 };

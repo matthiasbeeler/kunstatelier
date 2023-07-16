@@ -1,4 +1,4 @@
-<% var title =   "Hallo "+firstName %>
+<% var title =   "Hallo "+data.firstName %>
 
 <!DOCTYPE html>
 <html>
@@ -11,6 +11,12 @@
         <img src="/images/accountIcon.svg" alt="">
     </div>
       <div class="spacing13"></div>
+      <% if(data.admin == true){%>
+        <div onclick="redirect('/admin')" class="smallSubmitText submitButton submitDiv grayInnerShadowNoOffset">
+          Atelier verwalten
+        </div>
+        <div class="spacing5"></div>
+        <%}%>
       <div class="titleH4 placeholderColour">
        Nächste Ateliertage
       </div>
@@ -40,7 +46,7 @@
         </div>
       </div>
       <div class="spacing10"></div>
-      <div class="atelierContainer grayShadowNoOffset">
+      <div class="atelierContainer greenShadowNoOffset">
         <div class="aterlierTitle titleH4 titleNoMargin">
           Donnerstag, 08.07.2023 16:45 Uhr
         </div>

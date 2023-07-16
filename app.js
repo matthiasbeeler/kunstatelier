@@ -6,6 +6,7 @@ var logger = require('morgan');
 require("dotenv").config();
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
+var adminRouter = require('./routes/admin');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use(fileUpload({
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
