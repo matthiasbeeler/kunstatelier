@@ -1,8 +1,8 @@
 .grayShadowNoOffset{
-  box-shadow: 0px 0px 7px #bdbdbd;
+  box-shadow: 0px 0px 7px #797979;
 }
 .grayInnerShadowNoOffset{
-  box-shadow: inset 0px 0px 7px #00000048
+  box-shadow: inset 0px 0px 7px #797979
 }
 .redInnerShadowNoOffset{
   box-shadow: inset 0px 0px 7px #ff2e2e;
