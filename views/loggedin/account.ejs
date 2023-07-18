@@ -8,6 +8,8 @@
     <div class="content">
       <%- include('../modules/top.ejs', {title: title, noLogo: true, noBack: false, backLink: "redirect(`/user`)"})%>
       <div class="spacing13"></div>
+      
+
       <div class="accountSection">
             <div class="profileImage imageContainer" style="background-image: url('/user/uploads/profileImages/<%-data.id%>.webp?v=<%=data.profileImageUpdate%>');">
         </div>
@@ -20,6 +22,7 @@
             </div>
         </div>
       </div>
+      
       <div class="spacing5"></div>
       <div class="groupDiv groupSubmit submit grayInnerShadowNoOffset">
         <div class="button" onclick="redirect('/user/account/personalDetails')">
@@ -62,7 +65,16 @@
             </div>
            
         </div>
--->
+--><%if(data.admin){%>
+    
+    <div class="seperator"></div>
+    <div class="button">
+
+    <div class="alreadySignedUp">
+        <img src="/images/check.svg" alt="" class="check">
+        <div class="titleH4">Du bist Admin </div>
+      </div>
+    </div>      <%}%>
 
 </div>
 <div class="spacing5"></div>
@@ -75,7 +87,7 @@
             </div>
         </div>
 <div class="spacing5"></div>
-<div class="groupDiv groupSubmit submit redInnerShadowNoOffset">
+<div class="groupDiv groupSubmit submit logoutButton redInnerShadowNoOffset">
     <div class="button" onclick="localStorage.clear();redirect('/user/logout')">
         <div class="text">
         <div class="textTitle">Logout</div>

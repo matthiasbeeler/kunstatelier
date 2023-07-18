@@ -1,18 +1,117 @@
-<% var title =   "Admin" %>
+<% var title="Admin" %>
 
-<!DOCTYPE html>
-<html>
+  <!DOCTYPE html>
+  <html>
   <%- include('../../modules/head.ejs', {title: title})%>
 
-  <body>
-    <div class="content">
-      <%- include('../../modules/top.ejs', {title: title, noLogo: true, noBack: false, backLink: "redirect(`/user`)"})%>
-      <div class="spacing13"></div>
-      <div onclick="redirect('/admin/participants')" class="smallSubmitText submitButton submitDiv grayInnerShadowNoOffset">
-       Teilnehmer verwalten
-      </div>
-    </div>
-    <%- include('../../modules/footer.ejs')%>
+    <body>
+      <div class="content">
+        <%- include('../../modules/top.ejs', {title: title, noLogo: true, noBack: false, backLink: "redirect(`/user`)"
+          })%>
+          <div class="spacing13"></div>
+          <div onclick="redirect('/admin/participants')"
+            class="smallSubmitText submitButton submitDiv grayInnerShadowNoOffset">
+            Teilnehmer verwalten
+          </div>
+          <div class="spacing5"></div>
+          <div class="titleH4 placeholderColour">
+            Nächste Ateliertage
+          </div>
+          <div class="spacing5"></div>
 
-  </body>
-</html>
+          <% if(ateliers.length> 0) { %>
+
+            <% for(var i=0; i < ateliers.length; i++) { %>
+              <div class="atelierContainer participantContainer grayInnerShadowNoOffset participant<%=ateliers[i].id%>"
+                onclick="redirect('/admin/ateliers/<%=ateliers[i].id%>')">
+                <div class="participantInfo">
+
+                  <div class="aterlierTitle participantName titleH3 titleNoMargin">
+                    <%=ateliers[i].dateNew%>, <%=ateliers[i].time%> Uhr
+                  </div>
+
+                  <div class="title titleH4 lightText titleNoMargin">
+                    <% if(ateliers[i].subject){%>
+                    Thema: <%=ateliers[i].subject%>
+                    <% }else { %>
+                      Thema: Keines
+                      <% } %>
+                  </div>
+
+                  <div class="title titleH4 lightText titleNoMargin">
+                    Teilnehmer: <%=ateliers[i].participants%>
+                  </div>
+                  <div class="title titleH4 lightText titleNoMargin">
+                    Weitere Informationen:
+                  </div>
+                  <div class="title lightText ">
+                    <%=ateliers[i].furtherInformation%>
+                  </div>
+                </div>
+                <img class="arrow" src="/images/arrow.svg" alt="">
+
+              </div>
+              <div class="spacing5"></div>
+
+              <% } %>
+                <% } %>
+                  <div class="spacing5"></div>
+
+                  <div class="titleH4 placeholderColour">
+                    Vergangene Ateliertage
+                  </div>
+                  <div class="spacing5"></div>
+
+                  <% if(oldAteliers.length> 0) { %>
+
+                    <% for(var i=0; i < oldAteliers.length; i++) { %>
+                      <div
+                        class="atelierContainer participantContainer grayInnerShadowNoOffset participant<%=oldAteliers[i].id%>"
+                        onclick="redirect('/admin/ateliers/<%=oldAteliers[i].id%>')">
+                        <div class="participantInfo">
+
+                          <div class="aterlierTitle participantName titleH3 titleNoMargin">
+                            <%=oldAteliers[i].dateNew%>, <%=oldAteliers[i].time%> Uhr
+
+                          </div>
+
+                          <div class="title titleH4 lightText titleNoMargin">
+                            <% if(oldAteliers[i].subject){%>
+                            Thema: <%=oldAteliers[i].subject%>
+                            <% }else { %>
+                              Thema: Keines
+                              <% } %>
+                          </div>
+        
+                          <div class="title titleH4 lightText titleNoMargin">
+                            Teilnehmer: <%=oldAteliers[i].participants%>
+                          </div>
+                          <div class="title titleH4 lightText titleNoMargin">
+                            Weitere Informationen:
+                          </div>
+                          <div class="title lightText ">
+                            <%=oldAteliers[i].furtherInformation%>
+                          </div>
+
+                        </div>
+                        <img class="arrow" src="/images/arrow.svg" alt="">
+
+                      </div>
+                      <div class="spacing5"></div>
+                      <div class="spacing5"></div>
+
+                      <% } %>
+                        <% } %>
+
+                        <div class="spacing18"></div>
+
+                          <div onclick="redirect('/admin/createAtelier')"
+                            class="grayShadowNoOffset bottomFixedButton smallSubmitText submitButton submitDiv grayInnerShadowNoOffset">
+                            Ateliertag hinzufügen
+                          </div>
+      </div>
+      <%- include('../../modules/footer.ejs')%>
+
+    </body>
+
+  </html>

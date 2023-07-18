@@ -47,9 +47,17 @@ router.all("*", function (req, res, next) {
 });
 /* GET users listing. */
 router.get("/", function (req, res, next) {
+  database.query(
+    `SELECT *,Date_Format(date, '%d.%m.%Y') as dateNew FROM ateliers where CURDATE() <= date ORDER by date asc;`,
+    function (err, results, fields) {
+      var ateliers = results;
+      if(err)  ateliers = []
   res.render("loggedin/home", {
     data: jwt.verify(req.cookies.NyvAuth, process.env.jwtSecret),
+    ateliers: ateliers
   });
+});
+
 });
 
 router.get("/account", function (req, res, next) {

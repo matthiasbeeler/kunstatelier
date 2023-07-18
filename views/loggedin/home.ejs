@@ -21,56 +21,65 @@
        Nächste Ateliertage
       </div>
       <div class="spacing5"></div>
-      <div class="atelierContainer grayShadowNoOffset">
-        <div class="aterlierTitle titleH4 titleNoMargin">
-          Dienstag, 06.07.2023 16:45 Uhr
-        </div>
-        <div class="infoList">
-          <li>Kein spezielles Themengebiet</li>
-          <li>Najda wird <strong>nicht</strong> vor Ort sein</li>
-        </div>
+      <div class="atelierContent">
+        <%
+        function getDayName(dateStr, locale)
+{
+    var date = new Date(dateStr);
+    return date.toLocaleDateString(locale, { weekday: 'long' });        
+}
+        %>
+        <% if(ateliers.length > 0)  { %>
 
-        <div class="furtherInformation">
-          <div class="title titleH4 titleNoMargin">
-            Weitere Informationen
+      <% for(var i = 0; i < ateliers.length; i++) { %>
+        <div class="atelierContainer  <%if(JSON.stringify(ateliers[i].participantsList).includes(data.id)){%>greenShadowNoOffset<%}else{%>grayShadowNoOffset<%}%>">
+          <div class="aterlierTitle titleH4 titleNoMargin">
+            <%=getDayName(ateliers[i].date, "de-CH")%>, <%=ateliers[i].dateNew%> <%=ateliers[i].time%> Uhr
           </div>
-          <div class="information">
+          <div class="infoList">
+            <li><%if(!ateliers[i].subject){%>Kein spezielles Themengebiet
+              <%}else{%>
+                Thema: <%=ateliers[i].subject%><%}%></li>
+                <li><%if(!ateliers[i].nadja){%>Najda wird <strong>nicht</strong> vor Ort sein
+                  <%}else{%>
+                    Najda wird vor Ort sein<%}%></li>
+          </div>
+  
+          <div class="furtherInformation">
+            <div class="title titleH4 titleNoMargin">
+              Weitere Informationen
+            </div>
+            <div class="information">
+              <%=ateliers[i].furtherInformation%>
+            </div>
+          </div>
+          <div class="signedUpParttakers link">
+            Eingetragene Teilnehmer: <%=ateliers[i].participants%>
+          </div>
+        <%if(!JSON.stringify(ateliers[i].participantsList).includes(data.id)){%>
+          <div class="smallSubmitText submitButton submitDiv grayInnerShadowNoOffset">
+            Eintragen
+          </div>
+          <% }else {%>
+            <div class="alreadySignedUp">
+              <img src="/images/check.svg" alt="" class="check">
+              <div class="titleH4 title">Du bist bereits eingetragen </div>
+            </div>
+            <% } %>
 
-          </div>
         </div>
-        <div class="signedUpParttakers link">
-          Eingetragene Teilnehmer: 8
-        </div>
-        <div class="smallSubmitText submitButton submitDiv grayInnerShadowNoOffset">
-          Eintragen
-        </div>
-      </div>
-      <div class="spacing10"></div>
-      <div class="atelierContainer greenShadowNoOffset">
-        <div class="aterlierTitle titleH4 titleNoMargin">
-          Donnerstag, 08.07.2023 16:45 Uhr
-        </div>
-        <div class="infoList">
-          <li>Thema: Töpfern</li>
-          <li>Najda wird vor Ort sein</li>
-        </div>
+        <div class="spacing10"></div>
+        <% } %>
 
-        <div class="furtherInformation">
-          <div class="title titleH4 titleNoMargin">
-            Weitere Informationen
-          </div>
-          <div class="information">
-            Bitte bis am 07.07.2023 eintragen
-          </div>
-        </div>
-        <div class="signedUpParttakers link">
-          Eingetragene Teilnehmer: 5
-        </div>
-        <div class="alreadySignedUp">
-          <img src="/images/check.svg" alt="" class="check">
-          <div class="titleH4 title">Du bist bereits eingetragen </div>
-        </div>
-      </div>
+      <% } else {%>
+        <div class="titleH3 ">
+          Momentan sind keine Ateliers aufgeschalten.
+         </div>
+      <% } %>
+
+    </div>
+
+      
     </div>
     <%- include('../modules/footer.ejs')%>
 

@@ -15,7 +15,7 @@ exports.updateParticipant = function(request, response, database){
                 error: 4,
                 message: "An error occured.",
               });
-              if(results[0].active !== activation && activation == 1) activationEmail(results[0].email, jwt.verify(request.cookies.NyvAuth, process.env.jwtSecret).firstName,results[0].firstName);
+              if(results[0].active !== Number(activation) && activation == 1) activationEmail(results[0].email, jwt.verify(request.cookies.NyvAuth, process.env.jwtSecret).firstName,results[0].firstName);
               database.query(
                 "UPDATE accounts SET firstName = ?, lastName = ?, class = ?, active = ? WHERE id = ?",
                 [request.body.firstName, request.body.lastName, request.body.class, activation, id],

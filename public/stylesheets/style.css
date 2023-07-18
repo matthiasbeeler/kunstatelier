@@ -158,7 +158,7 @@ body, html{
   width: 80%;
 }
 
-input, select{
+input, select, textarea{
   background-color: #E1E1E1;
   border: 0.5px solid black;
   border-radius: 20px;
@@ -169,6 +169,15 @@ input, select{
   margin-left: 4%;
 }
 
+input.dateInputLeft{
+  display: inline-block;
+  width: 52%;
+}
+input.timeInputRight{
+  display: inline-block;
+  width: 25%;
+  margin-left: 1%;
+}
 select{
   width: 92%;
 
@@ -185,6 +194,7 @@ select{
   padding: 3%;
   margin-left: 4%;
   font-family: -apple-system, sanFrancisco, Josefin, sans-serif;
+  cursor: pointer;
 }
 
 .submitDiv{
@@ -322,6 +332,7 @@ margin-right: 0;
   position: absolute;
   top: 3%;
   right: 4%;
+  cursor: pointer;
 }
 
 .accountIcon img{
@@ -452,8 +463,11 @@ div.groupDiv {
   transform: translateY(-50%);
   display: flex;
   justify-content: center;
-  width: 8%;
+  width: 6%;
   aspect-ratio: 1/1;
+}
+.groupDiv.logoutButton .button .arrow {
+  width: 8%;
 }
 
 .groupDiv .button .arrow img {
@@ -485,7 +499,7 @@ div.groupDiv {
 .accountSection .accountInfo{
   width: 59%;
   display: inline-block;
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 .accountSection .accountInfo *{
@@ -494,13 +508,14 @@ div.groupDiv {
 }
 
 .atelierContainer{
+  cursor: pointer;
   width: 86%;
   margin-left: 4%;
   background-color: var(--mainBackgroundColour);
   padding: 3% 3% 3% 3%;
   border-radius: 20px;
 }
-.atelierContainer .titleH4, .atelierContainer .infoList{
+.atelierContainer .titleH4, .atelierContainer .infoList, .atelierContainer .title{
   padding: 1%;
 }
 
@@ -556,6 +571,7 @@ div.groupDiv {
 .link{
   font-weight: normal;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .alreadySignedUp{
@@ -625,7 +641,17 @@ div.fileInput{
   background: white;
   border-radius: 20px;
 }
+.marginFiveLeft{
+  margin-left: 5%;
+}
 
+.bottomFixedButton{
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-left: 0px;
+}
 @media (min-width: 800px) {
 
   .content {
@@ -640,5 +666,8 @@ div.fileInput{
     margin-left: 35%;
   }
 
-
+.bottomFixedButton{
+  width: 25.8%;
+  padding: 1%;
+}
 }
