@@ -4,6 +4,7 @@ const { database } = require('../services/database');
 var router = express.Router();
 var bouncer = require ("express-bouncer")(300000, 9000000, 7);
 const jwt = require("jsonwebtoken");
+const { passwordForgottenEmail, passwordForgottenUpdate } = require('../javascripts/passwordForgotten');
 
 bouncer.whitelist.push ("127.0.0.1");
 bouncer.blocked = function (req, res, next, remaining)
@@ -31,6 +32,23 @@ router.all(["/", "/signup"], function (req, res, next) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');
+});
+
+router.get('/passwordForgotten', function(req, res, next) {
+  res.render('passwordForgotten');
+});
+
+router.post('/passwordForgottenEmail', function(req, res, next) {
+  passwordForgottenEmail(req, res, database)
+});
+
+router.get('/passwordForgotten/:token', function(req, res, next) {
+  res.render('passwordForgottenChange', {token: req.params.token});
+});
+
+
+router.post('/passwordForgottenUpdate', function(req, res, next) {
+  passwordForgottenUpdate(req, res, database)
 });
 
 router.post('/login', function(req, res, next) {

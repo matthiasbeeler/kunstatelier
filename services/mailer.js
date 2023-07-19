@@ -36,3 +36,31 @@ exports.activationEmail = function(email, adminName,firstName){
       return false
   }
   }
+
+
+  exports.passwordReset = function(email,firstName,token){
+    try {
+      const filename = process.cwd() + "/emailTemplates/passwordForgotten.ejs";
+    ejs.renderFile(filename,{link: "https://kunstatelier.pavet.ch/passwordForgotten/"+token, firstName: firstName}, (error, mailHTML) => {
+      const mailOptions = {
+        from: process.env.emailUserName, // Sender address
+        to: email, // List of recipients //email
+        subject: "Kunstatelier Passwort", // Subject line
+        html: mailHTML,
+        text: "Mit diesem Link kannst Du Dein Passwort zurücksetzen: "+"https://kunstatelier.pavet.ch/passwordForgotten/"+token,
+      };
+      transporter.sendMail(mailOptions, (err, response) => {
+          if (!err) {
+            return true
+          }else{
+              console.log(err)
+            return false
+          }
+        });
+    });
+    
+  } catch (error) {
+      console.log(error)
+      return false
+  }
+  }
