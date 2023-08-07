@@ -10,7 +10,7 @@
           })%>
           <div class="spacing13"></div>
           <div onclick="redirect('/admin/participants')"
-            class="smallSubmitText submitButton submitDiv grayInnerShadowNoOffset">
+            class="smallSubmitText submitButton submitDiv">
             Teilnehmer verwalten
           </div>
           <div class="spacing5"></div>
@@ -26,11 +26,11 @@
                 onclick="redirect('/admin/ateliers/<%=ateliers[i].id%>')">
                 <div class="participantInfo">
 
-                  <div class="aterlierTitle participantName titleH3 titleNoMargin">
+                  <div class="aterlierTitle participantName titleH4 titleNoMargin">
                     <%=ateliers[i].dateNew%>, <%=ateliers[i].time%> Uhr
                   </div>
 
-                  <div class="title titleH4 lightText titleNoMargin">
+                  <div class="title titleH5 lightText titleNoMargin">
                     <% if(ateliers[i].subject){%>
                     Thema: <%=ateliers[i].subject%>
                     <% }else { %>
@@ -38,10 +38,10 @@
                       <% } %>
                   </div>
 
-                  <div class="title titleH4 lightText titleNoMargin">
+                  <div class="title titleH5 lightText titleNoMargin">
                     Teilnehmer: <%=ateliers[i].participants%>
                   </div>
-                  <div class="title titleH4 lightText titleNoMargin">
+                  <div class="title titleH5 lightText titleNoMargin">
                     Weitere Informationen:
                   </div>
                   <div class="title lightText ">
@@ -70,12 +70,12 @@
                         onclick="redirect('/admin/ateliers/<%=oldAteliers[i].id%>')">
                         <div class="participantInfo">
 
-                          <div class="aterlierTitle participantName titleH3 titleNoMargin">
+                          <div class="aterlierTitle participantName titleH4 titleNoMargin">
                             <%=oldAteliers[i].dateNew%>, <%=oldAteliers[i].time%> Uhr
 
                           </div>
 
-                          <div class="title titleH4 lightText titleNoMargin">
+                          <div class="title titleH5 lightText titleNoMargin">
                             <% if(oldAteliers[i].subject){%>
                             Thema: <%=oldAteliers[i].subject%>
                             <% }else { %>
@@ -83,10 +83,10 @@
                               <% } %>
                           </div>
         
-                          <div class="title titleH4 lightText titleNoMargin">
+                          <div class="title titleH5 lightText titleNoMargin">
                             Teilnehmer: <%=oldAteliers[i].participants%>
                           </div>
-                          <div class="title titleH4 lightText titleNoMargin">
+                          <div class="title titleH5 lightText titleNoMargin">
                             Weitere Informationen:
                           </div>
                           <div class="title lightText ">
@@ -106,7 +106,7 @@
                         <div class="spacing18"></div>
 
                           <div onclick="redirect('/admin/createAtelier')"
-                            class="grayShadowNoOffset bottomFixedButton smallSubmitText submitButton submitDiv grayInnerShadowNoOffset">
+                            class="grayShadowNoOffset bottomFixedButton smallSubmitText submitButton submitDiv">
                             Ateliertag hinzufügen
                           </div>
       </div>

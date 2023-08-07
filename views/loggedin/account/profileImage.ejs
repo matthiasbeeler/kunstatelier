@@ -34,6 +34,8 @@
                         $('.filePreview').show();
                         $('.fileInput .placeholderText').html('Click to retake');
                         $('.submitButton').removeClass('subtileButton')
+                        $('.submitButton').removeClass('grayInnerShadowNoOffset')
+                        
                     }
 
                     reader.readAsDataURL(input.files[0]);
@@ -42,7 +44,7 @@
         </script>
     </div>
     <div class="spacing5"></div>
-    <input type="submit" class="subtileButton submitButton button grayInnerShadowNoOffset submit" value="Profilbild updaten">
+    <input type="submit" class="subtileButton submitButton grayInnerShadowNoOffset button submit" value="Profilbild updaten">
 </form>
     </div>
     <%- include('../../modules/footer.ejs')%>

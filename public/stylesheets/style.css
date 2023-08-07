@@ -2,10 +2,10 @@
   box-shadow: 0px 0px 7px #dcdcdc;
 }
 .grayInnerShadowNoOffset{
-  box-shadow: inset 0px 0px 10px #cacaca;
+  box-shadow: 0px 0px 5px #cacaca88;
 }
 .redInnerShadowNoOffset{
-  box-shadow: inset 0px 0px 7px #ff2e2e;
+  box-shadow: 0px 0px 7px #ff2e2e7c;
 }
 .greenShadowNoOffset{
 box-shadow: 0px 0px 10px #5cff7f7b;
@@ -30,7 +30,7 @@ body {
   --mainInputBackgroundColour: #000000;
   --mainBackgroundColour: #ffffff;
   --lightBackgroundColour: #ffffff;
-  --bodyBackgroundColour: #ececec;
+  --bodyBackgroundColour: #f0f0f0;
   --mainButtonColour: #D84128;
   --mainAccentColour: #002EA4;
   --logoutButton: #520000;
@@ -165,12 +165,12 @@ body, html{
 }
 
 input, select, textarea{
-  background-color: #E1E1E1;
-  border: 0.5px solid black;
+  background-color: var(--mainBackgroundColour);
+  border: 1px solid rgba(0, 0, 0, 0.481);
   border-radius: 20px;
   width: 86%;
   font-weight: bolder;
-  font-size: larger;
+  font-size: large;
   padding: 3%;
   margin-left: 4%;
 }
@@ -196,7 +196,7 @@ select{
   border-radius: 20px;
   width: 92%;
   font-weight: 600;
-  font-size: x-large;
+  font-size: large;
   padding: 3%;
   margin-left: 4%;
   font-family: -apple-system, sanFrancisco, Josefin, sans-serif;
@@ -351,7 +351,7 @@ margin-right: 0;
   display: inline-flex;
   padding: 0%;
   justify-content: center;
-  background: var(--mainBackgroundColour);
+  background: var(--bodyBackgroundColour);
   width: 13%;
   aspect-ratio: 1/1;
   border-radius: 20px;
@@ -423,7 +423,7 @@ div.groupDiv {
 }
 
 .groupDiv .button .text .textTitle {
-  font-size: 140%;
+  font-size: 110%;
   font-family: -apple-system, sanFrancisco, Josefin, sans-serif;
   font-weight: 800;
 }
@@ -469,11 +469,11 @@ div.groupDiv {
   transform: translateY(-50%);
   display: flex;
   justify-content: center;
-  width: 6%;
+  width: 5%;
   aspect-ratio: 1/1;
 }
 .groupDiv.logoutButton .button .arrow {
-  width: 8%;
+  width: 6%;
 }
 
 .groupDiv .button .arrow img {
@@ -545,7 +545,7 @@ div.groupDiv {
 }
 
 .participantContainer .arrow{
-  width: 10%;
+  width: 6%;
   display: inline-block;
 }
 

@@ -12,7 +12,7 @@
     </div>
       <div class="spacing13"></div>
       <% if(data.admin == true){%>
-        <div onclick="redirect('/admin')" class="smallSubmitText submitButton submitDiv grayInnerShadowNoOffset">
+        <div onclick="redirect('/admin')" class="smallSubmitText submitButton submitDiv">
           Atelier verwalten
         </div>
         <div class="spacing5"></div>
@@ -57,7 +57,7 @@
             Eingetragene Teilnehmer: <%=ateliers[i].participants%>
           </div>
         <%if(!JSON.stringify(ateliers[i].participantsList).includes(data.id)){%>
-          <div class="smallSubmitText submitButton submitDiv grayInnerShadowNoOffset">
+          <div class="smallSubmitText submitButton submitDiv">
             Eintragen
           </div>
           <% }else {%>

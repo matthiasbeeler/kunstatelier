@@ -1,0 +1,137 @@
+<% var title =   "Account" %>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title><%-title%></title>
+        <link rel="stylesheet" href="../../public/stylesheets/style.css?v=0.0.0.5">
+        <link rel="preload" href="../../public/fonts/SF-Pro-Text-Black.otf" as="font" type="font/otf" crossorigin="anonymous">
+        <script src="../../public/javascripts/transition.js" defer></script>
+        <script src="../../public/javascripts/jquery.min.js"></script>
+        <meta name="theme-color" content="#ececec">
+        <link rel="manifest" href="../../public/manifest.json">
+        <link rel="icon" type="image/x-icon" href="../../public/images/appIcon.png">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="format-detection" content="date=no">
+        <meta name="format-detection" content="email=no">
+        <link rel="apple-touch-icon" sizes="640x640" href="../../public/images/appIcon.png">
+        <meta http-equiv='expires' content='0'>
+        <script>
+          var apiUrl = "<%=process.env.apiUrl%>"
+          if (typeof navigator.serviceWorker !== 'undefined') {
+            navigator.serviceWorker.register('../../public/pwabuilder-sw.js');
+          }
+        </script>
+      </head>
+  <body>
+    <div class="content">
+        <div class="topContent">
+
+            <div class="backButton grayInnerShadowNoOffset" onclick='<%-backLink%>'>
+                <img class="svgWhite" src="/images/back.svg" alt="">
+            </div>
+            <div class="  buttonTitle"><div class="titleH1 title actualTitle"><%-title%></div></div>
+
+        </div>
+      <div class="spacing13"></div>
+      
+
+      <div class="accountSection">
+            <div class="profileImage imageContainer" style="background-image: url('/user/uploads/profileImages/<%-data.id%>.webp?v=<%=data.profileImageUpdate%>');">
+        </div>
+        <div class="accountInfo">
+            <div class="name titleH2">
+                <%=data.firstName%> <%=data.lastName%>
+            </div>
+            <div class="email textMargin">
+                <%=data.email%>
+            </div>
+        </div>
+      </div>
+      
+      <div class="spacing5"></div>
+      <div class="groupDiv groupSubmit submit grayInnerShadowNoOffset">
+        <div class="button" onclick="redirect('/user/account/personalDetails')">
+            <div class="text">
+                <div class="textTitle">Persönliche Angaben</div>
+            </div>
+            <div class="arrow"><img src="/images/arrow.svg" alt=""></div>
+        </div>
+        <div class="seperator"></div>
+        <div class="button" onclick="redirect('/user/account/profileImage')">
+            <div class="text">
+                <div class="textTitle">Profilbild</div>
+            </div>
+            <div class="arrow"><img src="/images/arrow.svg" alt=""></div>
+        </div>
+        <div class="seperator"></div>
+
+        <div class="button" onclick="redirect('/user/account/emailUpdate')">
+            <div class="text">
+                <div class="textTitle">E-Mail Adresse</div>
+            </div>
+            <div class="arrow"><img src="/images/arrow.svg" alt=""></div>
+        </div>
+        <div class="seperator"></div>
+
+        <div class="button">
+            <div class="text">
+                <div class="textTitle">Account ID</div>
+                <div class=" smallTextContent textContent accountID"><%=data.id%></div>
+            </div>
+        </div>
+        <!--        <div class="seperator"></div>
+
+        <div class="button" onclick="redirect('/account/settings/profileImage')">
+            <div class="text">
+                <div class="textTitle">Profilbild</div>
+                                    <div class="textContent profilePicture"></div>
+
+                <div class="arrow"><img src="/assets/svg/arrow.svg" alt=""></div>
+            </div>
+           
+        </div>
+--><%if(data.admin){%>
+    
+    <div class="seperator"></div>
+    <div class="button">
+
+    <div class="alreadySignedUp">
+        <img src="/images/check.svg" alt="" class="check">
+        <div class="titleH4">Du bist Admin </div>
+      </div>
+    </div>      <%}%>
+
+</div>
+<div class="spacing5"></div>
+            <div class="groupDiv groupSubmit submit grayInnerShadowNoOffset">
+                <div class="button" onclick="redirect('/user/account/password')">
+                    <div class="text">
+                    <div class="textTitle">Passwort</div>
+                </div>
+                <div class="arrow"><img src="/images/arrow.svg" alt=""></div>
+            </div>
+        </div>
+<div class="spacing5"></div>
+<div class="groupDiv groupSubmit submit logoutButton redInnerShadowNoOffset">
+    <div class="button" onclick="localStorage.clear();redirect('/user/logout')">
+        <div class="text">
+        <div class="textTitle">Logout</div>
+    </div>
+    <div class="arrow"><img src="/images/logout.svg" alt=""></div>
+</div>
+</div>
+<div class="spacing10"></div>
+    </div>
+    <div class="footer">
+        <center>
+            <div class="footerText">&copy; <a href="https://nyv.ch" target="_blank">nyv</a> 2023
+            </div>
+        </center>
+    </div>
+  </body>
+</html>
