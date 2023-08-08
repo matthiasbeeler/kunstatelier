@@ -14,9 +14,10 @@ exports.updateAtelier = function(request, response, database){
                 error: 4,
                 message: "An error occured.",
               });
+              if(request.body.participantCapacity == "") request.body.participantCapacity = null;
               database.query(
-                "UPDATE ateliers SET date = ?, time = ?, subject = ?, furtherInformation = ? WHERE id = ?",
-                [request.body.date.split(".")[2]+"-"+request.body.date.split(".")[1]+"-"+request.body.date.split(".")[0], request.body.time, request.body.subject, request.body.furtherInformation, id],
+                "UPDATE ateliers SET date = ?, time = ?, subject = ?, furtherInformation = ?, participantCapacity=? WHERE id = ?",
+                [request.body.date.split(".")[2]+"-"+request.body.date.split(".")[1]+"-"+request.body.date.split(".")[0], request.body.time, request.body.subject, request.body.furtherInformation, request.body.participantCapacity, id],
                 function (err, results, fields) {
                     console.log(request.body)
                     if (err) console.log(err);

@@ -10,6 +10,7 @@ const { updatePassword } = require("../javascripts/updatePassword");
 const {
   checkActivationStatus,
 } = require("../javascripts/checkActivationStatus");
+const { createEntry } = require("../javascripts/createEntry");
 
 router.all("*", function (req, res, next) {
   try {
@@ -157,6 +158,25 @@ router.all("/uploads/profileImages/:id", function (req, res, next) {
     console.log(error);
   }
 });
+
+router.post("/createEntry", function (req, res, next) {
+  createEntry(req, res, database);
+});
+
+router.get("/atelier/:id", function (req, res, next) {
+  database.query(
+    `SELECT *,Date_Format(date, '%d.%m.%Y') as dateNew FROM ateliers where CURDATE() <= date AND id =?;`,[req.params.id],
+    function (err, results, fields) {
+      var atelier = results;
+      if(err)  ateliers = []
+  res.render("loggedin/singleAtelier", {
+    data: jwt.verify(req.cookies.NyvAuth, process.env.jwtSecret),
+    atelier: atelier[0]
+  });
+});
+
+});
+
 
 router.get("/logout", (req, res) => {
   res.clearCookie("NyvAuth");

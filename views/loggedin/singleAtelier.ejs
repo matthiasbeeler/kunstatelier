@@ -1,0 +1,131 @@
+<% var title =   "Account" %>
+
+<!DOCTYPE html>
+<html>
+  <%- include('../modules/head.ejs', {title: title})%>
+
+  <body>
+    <div class="content">
+      <%- include('../modules/top.ejs', {title: title, noLogo: true, noBack: false, backLink: "redirect(`/user`)"})%>
+      <div class="spacing13"></div>
+      
+
+            <div class="name titleH2">
+                <%=atelier.dateNew%>, <%=atelier.time%> Uhr
+            </div>
+      
+      <div class="spacing5"></div>
+      <div class="textMargin">
+      <div class="infoList">
+        <li><%if(!atelier.subject){%>Kein spezielles Themengebiet
+          <%}else{%>
+            Thema: <%=atelier.subject%><%}%></li>
+            <li><%if(!atelier.nadja){%>Najda wird <strong>nicht</strong> vor Ort sein
+              <%}else{%>
+                Najda wird vor Ort sein<%}%></li>
+
+                <%if(atelier.participantCapacity){%>
+                  <li>Maximale Teilnehmerzahl: <%=atelier.participantCapacity%></li>
+                  <%}%>
+      </div>
+
+      <div class="furtherInformation">
+        <div class="title titleH4 titleNoMargin">
+          Weitere Informationen
+        </div>
+        <div class="information">
+          <%=atelier.furtherInformation%>
+        </div>
+      </div>
+      <div class="signedUpParttakers signedUpParttakers<%=atelier.id%>">
+        Eingetragene Teilnehmer: <%=atelier.participants%>
+      </div></div>
+      
+      
+      <%if(!JSON.stringify(atelier.participantsList).includes(data.id)){%>
+        <%if(atelier.participantCapacity == null | Number(atelier.participants) < Number(atelier.participantCapacity)){%>
+            <div
+            class="grayShadowNoOffset bottomFixedButton smallSubmitText submitButton submitDiv submit<%=atelier.id%>" onclick="createEntry(<%=atelier.id%>)">
+            Eintragen
+          </div>
+          <div class="textMargin alreadySignedUp signedUp<%=atelier.id%>" style="display: none;">
+            <img src="/images/check.svg" alt="" class="check">
+            <div class="titleH4 title">Du bist nun eingetragen </div>
+          </div>
+          <% }else {%>
+            <div class="textMargin alreadySignedUp">
+              <img src="/images/warningRound.svg" alt="" class="check">
+              <div class="titleH4 title">Teilnehmerzahl erreicht </div>
+            </div>
+            <% }%>
+        
+        <% }else {%>
+          <div class="textMargin alreadySignedUp">
+            <img src="/images/check.svg" alt="" class="check">
+            <div class="titleH4 title">Du bist bereits eingetragen </div>
+          </div>
+          <% } %>
+     
+<div class="spacing10"></div>
+    </div>
+    <%- include('../modules/footer.ejs')%>
+
+  </body>
+</html>
+
+
+
+<script>
+    function createEntry(id) {
+      $('.errorMessage').hide()
+          $(".submit"+id).val("Loading...")
+          $('.submit'+id).prop('disabled', true);
+          try {
+              $.ajax({
+                  url: '/user/createEntry',
+                  type: 'POST',
+                  
+                 cache: false,
+                 data: {
+                     "atelierId": id
+                  },
+                  xhrFields: {
+                      withCredentials: true
+                  },
+                  crossDomain: true,
+                  success: function (data, status, xhr) {
+                      if (data) {
+                          if (data.success == true) {
+                              $(".submit"+id).hide()
+                              $('.signedUpParttakers'+id).html("Eingetragene Teilnehmer: "+data.participants);
+                              $(".signedUp"+id).show()
+                          }
+                          if (data.success == false) {
+                            console.log(data)
+                              $('.infoContainer').show()
+                              $('.infoContainer .info').html(data.message)
+                              $(".submit"+id).val("Eintragen")
+                              $('.submit'+id).prop('disabled', false);
+                          }
+                      }
+  
+                  },
+                  error: function (jqXHR, textStatus, err) {
+                      $('.infoContainer').show()
+                      $('.infoContainer .info').html("An error occerd whilst communication with our server.")
+  
+                      $(".submit"+id).val("Eintragen")
+                              $('.submit'+id).prop('disabled', false);
+                  }
+              });
+  
+  
+          } catch (error) {
+              console.log(error)
+              $('.infoContainer').show()
+              $('.infoContainer .info').html("An error occerd whilst communication with our server.")
+              $(".submit"+id).val("Eintragen")
+                              $('.submit'+id).prop('disabled', false);
+          }
+    }
+  </script>

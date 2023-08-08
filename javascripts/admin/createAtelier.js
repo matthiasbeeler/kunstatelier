@@ -5,8 +5,10 @@ exports.createAtelier = function (request, response, database) {
 
     console.log(request.body)
     var jwtData = jwt.verify(request.cookies.NyvAuth, process.env.jwtSecret);
-  database.query(
-    "INSERT INTO ateliers (date, time, furtherInformation, subject, createdAt, creator) VALUES(?,?,?,?,?,?)",
+    console.log(typeof request.body.participantCapacity)
+    if(request.body.participantCapacity == "") request.body.participantCapacity = null;
+    database.query(
+    "INSERT INTO ateliers (date, time, furtherInformation, subject, createdAt, creator, participantCapacity) VALUES(?,?,?,?,?,?,?)",
     [
       request.body.date.split(".")[2]+"-"+request.body.date.split(".")[1]+"-"+request.body.date.split(".")[0],
       request.body.time,
@@ -14,6 +16,7 @@ exports.createAtelier = function (request, response, database) {
       request.body.subject,
       Date.now(),
       jwtData.id,
+      request.body.participantCapacity,
     ],
     function (err, results, fields) {
       if (err) console.log(err);

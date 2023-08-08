@@ -64,3 +64,31 @@ exports.activationEmail = function(email, adminName,firstName){
       return false
   }
   }
+
+  exports.newEntry = function(email,firstName,atelier){
+    try {
+      const filename = process.cwd() + "/emailTemplates/newEntry.ejs";
+    ejs.renderFile(filename,{atelier: atelier, firstName: firstName}, (error, mailHTML) => {
+      if(error) console.log(error);
+      const mailOptions = {
+        from: process.env.emailUserName, // Sender address
+        to: email, // List of recipients //email
+        subject: "Atelier vom " + atelier.dateNew, // Subject line
+        html: mailHTML,
+        text: "Du hast Dich erfolgreich für das Atelier am "+atelier.dateNew+" um "+atelier.time+" Uhr eingetragen!",
+      };
+      transporter.sendMail(mailOptions, (err, response) => {
+          if (!err) {
+            return true
+          }else{
+              console.log(err)
+            return false
+          }
+        });
+    });
+    
+  } catch (error) {
+      console.log(error)
+      return false
+  }
+  }

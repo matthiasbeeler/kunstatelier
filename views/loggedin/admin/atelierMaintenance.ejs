@@ -34,7 +34,10 @@
         <div class="spacing5"></div>
         <textarea name="furtherInformation"  placeholder="Weitere Informationen" id="furtherInformation" cols="30" rows="2"><%=atelier.furtherInformation%></textarea>
         <div class="spacing5"></div>
-
+        <input type="number" id="participantCapacity" name="participantCapacity" onchange="$(this).css('border', '0.5px solid black');"
+        oninvalid="$(this).css('border', '2px solid red');" placeholder="Maximale Teilnehmerzahl" 
+        class="standardInput" value="<%=atelier.participantCapacity%>">
+        <div class="spacing5"></div>
       <input type="submit" class="submitButton bottomFixedButton button submit" value="Speichern">
 
       </form>
@@ -111,6 +114,7 @@ $("form").submit(function (e) {
                     "time": $('#time').val(),
                     "subject": $('#subject').val(),
                     "furtherInformation": $('#furtherInformation').val(),
+                    "participantCapacity": $('#participantCapacity').val(),
                     "id": "<%=atelier.id%>"
                 },
                 xhrFields: {

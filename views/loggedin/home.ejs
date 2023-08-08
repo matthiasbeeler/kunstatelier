@@ -11,6 +11,11 @@
         <img src="/images/accountIcon.svg" alt="">
     </div>
       <div class="spacing13"></div>
+      <div class="infoContainer redInnerShadowNoOffset" style="display: none;">
+        <div class="titleH4 info">
+
+        </div>
+    </div>
       <% if(data.admin == true){%>
         <div onclick="redirect('/admin')" class="smallSubmitText submitButton submitDiv">
           Atelier verwalten
@@ -32,7 +37,7 @@
         <% if(ateliers.length > 0)  { %>
 
       <% for(var i = 0; i < ateliers.length; i++) { %>
-        <div class="atelierContainer  <%if(JSON.stringify(ateliers[i].participantsList).includes(data.id)){%>greenShadowNoOffset<%}else{%>grayShadowNoOffset<%}%>">
+        <div onclick="redirect('/user/atelier/<%=ateliers[i].id%>')" class="atelierContainer  <%if(JSON.stringify(ateliers[i].participantsList).includes(data.id)){%>greenShadowNoOffset<%}else{%>grayShadowNoOffset<%}%>">
           <div class="aterlierTitle titleH4 titleNoMargin">
             <%=getDayName(ateliers[i].date, "de-CH")%>, <%=ateliers[i].dateNew%> <%=ateliers[i].time%> Uhr
           </div>
@@ -43,6 +48,10 @@
                 <li><%if(!ateliers[i].nadja){%>Najda wird <strong>nicht</strong> vor Ort sein
                   <%}else{%>
                     Najda wird vor Ort sein<%}%></li>
+
+                    <%if(ateliers[i].participantCapacity){%>
+                      <li>Maximale Teilnehmerzahl: <%=ateliers[i].participantCapacity%></li>
+                      <%}%>
           </div>
   
           <div class="furtherInformation">
@@ -53,13 +62,25 @@
               <%=ateliers[i].furtherInformation%>
             </div>
           </div>
-          <div class="signedUpParttakers link">
+          <div class="signedUpParttakers signedUpParttakers<%=ateliers[i].id%> link">
             Eingetragene Teilnehmer: <%=ateliers[i].participants%>
           </div>
         <%if(!JSON.stringify(ateliers[i].participantsList).includes(data.id)){%>
-          <div class="smallSubmitText submitButton submitDiv">
+          <%if(ateliers[i].participantCapacity == null | Number(ateliers[i].participants) < Number(ateliers[i].participantCapacity)){%>
+            <div class="smallSubmitText submitButton submitDiv submit<%=ateliers[i].id%>" onclick="createEntry(<%=ateliers[i].id%>)">
             Eintragen
           </div>
+          <div class="alreadySignedUp signedUp<%=ateliers[i].id%>" style="display: none;">
+            <img src="/images/check.svg" alt="" class="check">
+            <div class="titleH4 title">Du bist nun eingetragen </div>
+          </div>
+          <% }else {%>
+            <div class="alreadySignedUp">
+              <img src="/images/warningRound.svg" alt="" class="check">
+              <div class="titleH4 title">Teilnehmerzahl erreicht </div>
+            </div>
+            <% }%>
+
           <% }else {%>
             <div class="alreadySignedUp">
               <img src="/images/check.svg" alt="" class="check">
@@ -85,3 +106,58 @@
 
   </body>
 </html>
+
+<script>
+  function createEntry(id) {
+    $('.errorMessage').hide()
+        $(".submit"+id).val("Loading...")
+        $('.submit'+id).prop('disabled', true);
+        try {
+            $.ajax({
+                url: '/user/createEntry',
+                type: 'POST',
+                
+               cache: false,
+               data: {
+                   "atelierId": id
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                success: function (data, status, xhr) {
+                    if (data) {
+                        if (data.success == true) {
+                            $(".submit"+id).hide()
+                            $('.signedUpParttakers'+id).html("Eingetragene Teilnehmer: "+data.participants);
+                            $(".signedUp"+id).show()
+                        }
+                        if (data.success == false) {
+                          console.log(data)
+                            $('.infoContainer').show()
+                            $('.infoContainer .info').html(data.message)
+                            $(".submit"+id).val("Eintragen")
+                            $('.submit'+id).prop('disabled', false);
+                        }
+                    }
+
+                },
+                error: function (jqXHR, textStatus, err) {
+                    $('.infoContainer').show()
+                    $('.infoContainer .info').html("An error occerd whilst communication with our server.")
+
+                    $(".submit"+id).val("Eintragen")
+                            $('.submit'+id).prop('disabled', false);
+                }
+            });
+
+
+        } catch (error) {
+            console.log(error)
+            $('.infoContainer').show()
+            $('.infoContainer .info').html("An error occerd whilst communication with our server.")
+            $(".submit"+id).val("Eintragen")
+                            $('.submit'+id).prop('disabled', false);
+        }
+  }
+</script>
