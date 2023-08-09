@@ -354,7 +354,7 @@ margin-right: 0;
   display: inline-flex;
   padding: 0%;
   justify-content: center;
-  background: var(--bodyBackgroundColour);
+  background: transparent;
   width: 13%;
   aspect-ratio: 1/1;
   border-radius: 20px;
@@ -660,6 +660,35 @@ div.fileInput{
   transform: translateX(-50%);
   margin-left: 0px;
 }
+
+.overlay{
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  backdrop-filter: blur(5px);
+  background-color: #ffffffa8;
+}
+.singleAtelierParticipantContainer{
+  float: left;
+  clear: none; 
+  width: 20%;
+  display: inline-block;
+  justify-content:baseline;
+  aspect-ratio: 1/1;
+  position: inherit;
+}
+.singleAtelierParticipantContainer .profileImage{
+  width: 100%;
+}
+.singleAtelierParticipantContainer .firstName{
+  width: 100%;
+  text-align: center;
+  aspect-ratio: 2/1;
+
+}
+
 @media (min-width: 800px) {
 
   .content {

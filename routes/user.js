@@ -11,6 +11,7 @@ const {
   checkActivationStatus,
 } = require("../javascripts/checkActivationStatus");
 const { createEntry } = require("../javascripts/createEntry");
+const { removeEntry } = require("../javascripts/removeEntry");
 
 router.all("*", function (req, res, next) {
   try {
@@ -163,16 +164,33 @@ router.post("/createEntry", function (req, res, next) {
   createEntry(req, res, database);
 });
 
+router.post("/removeEntry", function (req, res, next) {
+  removeEntry(req, res, database);
+});
+
 router.get("/atelier/:id", function (req, res, next) {
   database.query(
-    `SELECT *,Date_Format(date, '%d.%m.%Y') as dateNew FROM ateliers where CURDATE() <= date AND id =?;`,[req.params.id],
+    `SELECT *,Date_Format(date, '%d.%m.%Y') as dateNew FROM ateliers where id =?;`,[req.params.id],
     function (err, results, fields) {
       var atelier = results;
-      if(err)  ateliers = []
+      if(err)  ateliers = [];
+      if(!atelier) return res.redirect('/user')
+      if(atelier.length <= 0) return res.redirect('/user')
+      if(!results[0].participantsList){results[0].participantsList = [];}else{results[0].participantsList = JSON.parse(results[0].participantsList)}
+      database.query(
+        `SELECT id, firstName FROM accounts WHERE id in ('${atelier[0].participantsList.join("','")}');`,
+        function (error, results, fields) {
+          console.log(atelier[0].participantsList.join("','"))
+          if (error) console.log(err);
+          if (error) return res.redirect('/user')
+          var accountsData = results;
+          console.log(accountsData)
   res.render("loggedin/singleAtelier", {
     data: jwt.verify(req.cookies.NyvAuth, process.env.jwtSecret),
-    atelier: atelier[0]
+    atelier: atelier[0], accountsData:accountsData
   });
+});
+
 });
 
 });

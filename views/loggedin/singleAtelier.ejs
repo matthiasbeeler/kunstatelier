@@ -64,9 +64,50 @@
             <img src="/images/check.svg" alt="" class="check">
             <div class="titleH4 title">Du bist bereits eingetragen </div>
           </div>
-          <% } %>
-     
+          <div class="spacing10"></div>
+<input type="submit" onclick="showOverlay()"
+class="subtileButton submitButton grayShadowNoOffset button submit removeEntryButton" value="Abmelden">
 <div class="spacing10"></div>
+<div class="overlay" style="display: none;">
+    <div class="spacing18">
+    </div>
+    <div class="spacing5">
+    </div>
+    <div class="overlayInner">
+
+        <div class="infoContainer redInnerShadowNoOffset">
+            <div class="titleH3 info">
+                Möchtest Du Dich wirklich vom Atelier vom <%=atelier.dateNew%> um <%=atelier.time%> Uhr abmelden?
+            </div>
+        </div>
+        <div class="spacing5">
+
+        </div>
+        <input type="submit" onclick="removeEntry(<%=atelier.id%>)"
+class=" submitButton redShadowNoOffset button submit" value="Ja, abmelden">
+    </div>
+</div>
+          <% } %>
+     <div class="spacing5">
+        
+     </div>
+     <div class="titleH4 placeholderColour">
+        Eingetragene Teilnehmer
+       </div>
+     <% for(var i=0; i<accountsData.length; i++) {%>
+        <div class="singleAtelierParticipantContainer">
+            <div class="innerContainer">
+                            <div class="profileImage"  style="background-image: url('/user/uploads/profileImages/<%-accountsData[i].id%>.webp');">
+            </div>
+            <div class="firstName">
+                <%= accountsData[i].firstName %>
+            </div>
+
+        </div>
+
+        </div>
+     <% } %>
+
     </div>
     <%- include('../modules/footer.ejs')%>
 
@@ -76,6 +117,16 @@
 
 
 <script>
+    var backAction;
+    function showOverlay() {
+        $('.overlay').show();
+        backAction = $('.backButton').attr('onclick');
+        $('.backButton').attr('onclick', "hideOverlay()")
+    }
+    function hideOverlay() {
+        $('.overlay').hide();
+        $('.backButton').attr('onclick', backAction)
+    }
     function createEntry(id) {
       $('.errorMessage').hide()
           $(".submit"+id).val("Loading...")
@@ -126,6 +177,59 @@
               $('.infoContainer .info').html("An error occerd whilst communication with our server.")
               $(".submit"+id).val("Eintragen")
                               $('.submit'+id).prop('disabled', false);
+          }
+    }
+    function removeEntry(id) {
+      $('.errorMessage').hide()
+          $(".removeEntry"+id).val("Loading...")
+          $('.removeEntry'+id).prop('disabled', true);
+          try {
+              $.ajax({
+                  url: '/user/removeEntry',
+                  type: 'POST',
+                  
+                 cache: false,
+                 data: {
+                     "atelierId": id
+                  },
+                  xhrFields: {
+                      withCredentials: true
+                  },
+                  crossDomain: true,
+                  success: function (data, status, xhr) {
+                      if (data) {
+                          if (data.success == true) {
+                                hideOverlay();
+                              $(".submit"+id).show()
+                              $('.signedUpParttakers'+id).html("Eingetragene Teilnehmer: "+data.participants);
+                              $(".alreadySignedUp, .removeEntryButton").hide()
+                          }
+                          if (data.success == false) {
+                            console.log(data)
+                              $('.infoContainer').show()
+                              $('.infoContainer .info').html(data.message)
+                              $(".removeEntry"+id).val("Ja, abmelden")
+                              $('.removeEntry'+id).prop('disabled', false);
+                          }
+                      }
+  
+                  },
+                  error: function (jqXHR, textStatus, err) {
+                      $('.infoContainer').show()
+                      $('.infoContainer .info').html("An error occerd whilst communication with our server.")
+  
+                      $(".removeEntry"+id).val("Ja, abmelden")
+                              $('.removeEntry'+id).prop('disabled', false);
+                  }
+              });
+  
+  
+          } catch (error) {
+              console.log(error)
+              $('.infoContainer').show()
+              $('.infoContainer .info').html("An error occerd whilst communication with our server.")
+              $(".removeEntry"+id).val("Ja, abmelden")
+                              $('.removeEntry'+id).prop('disabled', false);
           }
     }
   </script>
