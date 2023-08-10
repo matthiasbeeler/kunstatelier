@@ -120,3 +120,66 @@ exports.activationEmail = function(email, adminName,firstName){
       return false
   }
   }
+
+
+  exports.atelierEdit = function(participants,atelier){
+    try {
+      participants.forEach(element => {
+      const filename = process.cwd() + "/emailTemplates/atelierEdit.ejs";
+    ejs.renderFile(filename,{atelier: atelier, firstName: element.firstName}, (error, mailHTML) => {
+      if(error) console.log(error);
+      const mailOptions = {
+        from: process.env.emailUserName, // Sender address
+        to: element.email, // List of recipients //email
+        subject: "Atelier vom " + atelier.dateNew, // Subject line
+        html: mailHTML,
+        text: "Dein Atelier wurde verändert: https://kunstatelier.pavet.ch/user/atelier/"+atelier.id,
+      };
+      transporter.sendMail(mailOptions, (err, response) => {
+          if (!err) {
+            return true
+          }else{
+              console.log(err)
+            return false
+          }
+        });
+
+      });
+    });
+    
+  } catch (error) {
+      console.log(error)
+      return false
+  }
+  }
+
+  exports.reminder = function(participants,atelier){
+    try {
+      participants.forEach(element => {
+      const filename = process.cwd() + "/emailTemplates/reminder.ejs";
+    ejs.renderFile(filename,{atelier: atelier, firstName: element.firstName}, (error, mailHTML) => {
+      if(error) console.log(error);
+      const mailOptions = {
+        from: process.env.emailUserName, // Sender address
+        to: element.email, // List of recipients //email
+        subject: "Erinnerung Atelier vom " + atelier.dateNew, // Subject line
+        html: mailHTML,
+        text: "Dein Atelier wurde verändert: https://kunstatelier.pavet.ch/user/atelier/"+atelier.id,
+      };
+      transporter.sendMail(mailOptions, (err, response) => {
+          if (!err) {
+            return true
+          }else{
+              console.log(err)
+            return false
+          }
+        });
+
+      });
+    });
+    
+  } catch (error) {
+      console.log(error)
+      return false
+  }
+  }

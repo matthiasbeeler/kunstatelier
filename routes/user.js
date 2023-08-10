@@ -50,7 +50,7 @@ router.all("*", function (req, res, next) {
 /* GET users listing. */
 router.get("/", function (req, res, next) {
   database.query(
-    `SELECT *,Date_Format(date, '%d.%m.%Y') as dateNew FROM ateliers where CURDATE() <= date ORDER by date asc;`,
+    `SELECT *,Date_Format(date, '%d.%m.%Y') as dateNew FROM ateliers where CURDATE() <= date ORDER by date asc LIMIT 4;`,
     function (err, results, fields) {
       var ateliers = results;
       if(err)  ateliers = []
@@ -180,11 +180,9 @@ router.get("/atelier/:id", function (req, res, next) {
       database.query(
         `SELECT id, firstName FROM accounts WHERE id in ('${atelier[0].participantsList.join("','")}');`,
         function (error, results, fields) {
-          console.log(atelier[0].participantsList.join("','"))
           if (error) console.log(err);
           if (error) return res.redirect('/user')
           var accountsData = results;
-          console.log(accountsData)
   res.render("loggedin/singleAtelier", {
     data: jwt.verify(req.cookies.NyvAuth, process.env.jwtSecret),
     atelier: atelier[0], accountsData:accountsData

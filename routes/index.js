@@ -5,6 +5,8 @@ var router = express.Router();
 var bouncer = require ("express-bouncer")(300000, 9000000, 7);
 const jwt = require("jsonwebtoken");
 const { passwordForgottenEmail, passwordForgottenUpdate } = require('../javascripts/passwordForgotten');
+const cron = require('node-cron');
+const { sendReminder } = require('../javascripts/sendReminder');
 
 bouncer.whitelist.push ("127.0.0.1");
 bouncer.blocked = function (req, res, next, remaining)
@@ -62,6 +64,11 @@ router.get('/signup', function(req, res, next) {
 router.post('/signup', function(req, res, next) {
   signup(req, res, database,bouncer)
 });
+
+cron.schedule('0 02 03 * * *', function() {
+sendReminder(database)
+});
+
 
 setInterval(function () {
   database.query('SELECT 1')
