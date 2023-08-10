@@ -65,7 +65,7 @@ router.post('/signup', function(req, res, next) {
   signup(req, res, database,bouncer)
 });
 
-cron.schedule('0 02 03 * * *', function() {
+cron.schedule('0 52 09 * * *', function() {
 sendReminder(database)
 });
 
