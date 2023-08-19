@@ -13,7 +13,7 @@
       class="standardInput" onkeyup="search()">
       <div class="spacing5"></div>
       <% for(var i = 0; i < participants.length; i++) { %>
-        <div class="atelierContainer participantContainer grayInnerShadowNoOffset participant<%=participants[i].id%>" onclick="redirect('/admin/participants/<%=participants[i].id%>')">
+        <div class="atelierContainer participantContainer <%if(participants[i].active == 0) { %> orangeShadowNoOffset <%}else{ %>grayShadowNoOffset<%}%> participant<%=participants[i].id%>" onclick="redirect('/admin/participants/<%=participants[i].id%>')">
             <div class="participantInfo">
     
             <div class="aterlierTitle participantName titleH3 titleNoMargin">

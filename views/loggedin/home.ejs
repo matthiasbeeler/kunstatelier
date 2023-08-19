@@ -1,4 +1,4 @@
-<% var title =   "Hallo "+data.firstName %>
+<% var title =   "Hallo, "+data.firstName %>
 
 <!DOCTYPE html>
 <html>
@@ -45,9 +45,9 @@
             <li><%if(!ateliers[i].subject){%>Kein spezielles Themengebiet
               <%}else{%>
                 Thema: <%=ateliers[i].subject%><%}%></li>
-                <li><%if(!ateliers[i].nadja){%>Najda wird <strong>nicht</strong> vor Ort sein
+                <li><%if(!ateliers[i].guidance){%>Eine Kursleitung wird <strong>nicht</strong> vor Ort sein
                   <%}else{%>
-                    Najda wird vor Ort sein<%}%></li>
+                    Eine Kursleitung wird vor Ort sein<%}%></li>
 
                     <%if(ateliers[i].participantCapacity){%>
                       <li>Maximale Teilnehmerzahl: <%=ateliers[i].participantCapacity%></li>

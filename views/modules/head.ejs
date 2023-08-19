@@ -21,5 +21,24 @@
     if (typeof navigator.serviceWorker !== 'undefined') {
       navigator.serviceWorker.register('/pwabuilder-sw.js');
     }
+   
   </script>
+
 </head>
+<div class="cookieNoticeBackground" style="display: none;">
+  <center>
+<div class="cookieNotice loginNotice">
+  <div class="warningSymbol">
+    <img src="/images/cookie.svg"  alt="">
+</div>
+<p class="grayShadowNoOffset">Um dir ein optimales Erlebnis zu bieten, verwenden wir Technologien wie Cookies, um auf Geräteinformationen zuzugreifen. Wenn du diesen Technologien zustimmst, können wir Daten wie das Surfverhalten oder eindeutige IDs auf dieser Website verarbeiten - was wir jedoch nicht tun werden. Wenn du deine Zustimmung nicht erteilst oder zurückziehst, können bestimmte Merkmale und Funktionen beeinträchtigt werden.</p>
+
+<div class="footerText"><a href="/privacy-policy" target="_blank">Datenschutzerklärung</a> · <a href="/impressum" target="_blank">Impressum</a>
+</div> <br>
+<div onclick="redirect('/admin/createAtelier')"
+id="dismiss-cookie-notice" class="dismiss-cookie-notice submitButtonNoMargin grayShadowNoOffset smallSubmitText submitButton submitDiv">
+Akzeptieren
+                          </div>
+</div>
+</center>
+</div>

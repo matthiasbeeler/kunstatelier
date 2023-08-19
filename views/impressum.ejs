@@ -1,0 +1,23 @@
+
+<%
+var title = "Impressum";
+%>
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./modules/head.ejs', {title: title})%>
+<body class="dark-mode">
+    <%- include('./modules/top.ejs', {title: title, noLogo:false, noBack: false, backLink: "redirect(document.referrer)"})%>
+
+    <div class="content">
+        Matthias Beeler <br>
+        Sunnmatt 32 <br>
+        6410 Goldau <br>
+        Schweiz <br>
+        <br><br>
+        E-Mail: hey@nyv.ch
+        
+    </div>
+   
+    <%- include('./modules/footer.ejs')%>
+</body>
+</html>

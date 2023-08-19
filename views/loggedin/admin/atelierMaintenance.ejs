@@ -38,6 +38,12 @@
         oninvalid="$(this).css('border', '2px solid red');" placeholder="Maximale Teilnehmerzahl" 
         class="standardInput" value="<%=atelier.participantCapacity%>">
         <div class="spacing5"></div>
+        <select name="activeSelect" class="activeSelect" id="activeSelect">
+          <option value="" disabled selected hidden>Bitte Kurstyp wählen</option>
+          <option value="1">Kursleitung vor Ort</option>
+          <option value="0">Ohne Kursleitung vor Ort</option>
+      </select>
+      <div class="spacing5"></div>
       <input type="submit" class="submitButton bottomFixedButton button submit" value="Speichern">
 
       </form>
@@ -46,9 +52,9 @@
 
   </body>
 </html>
-
 <script>
-   
+   $('.activeSelect').val(<%=atelier.guidance%>);
+
      //datepicker
   var el = document.getElementById("date");
 
@@ -115,6 +121,7 @@ $("form").submit(function (e) {
                     "subject": $('#subject').val(),
                     "furtherInformation": $('#furtherInformation').val(),
                     "participantCapacity": $('#participantCapacity').val(),
+                    "activeSelect": $('#activeSelect').val(),
                     "id": "<%=atelier.id%>"
                 },
                 xhrFields: {

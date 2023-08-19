@@ -14,6 +14,8 @@ bouncer.blocked = function (req, res, next, remaining)
     res.json({success: false, message: "Es wurden zu viele Anfragen gesendet. Bitte warte " + Math.round(remaining / 1000 / 60) + " Minuten"});
 };
 
+
+
 router.all(["/", "/signup"], function (req, res, next) {
   try {
   if(req.cookies.NyvAuth){
@@ -30,6 +32,14 @@ router.all(["/", "/signup"], function (req, res, next) {
     console.log(error)
 }
 })
+
+router.get('/privacy-policy', function(req, res, next) {
+  res.render('privacy-policy');
+});
+
+router.get('/impressum', function(req, res, next) {
+  res.render('impressum');
+});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

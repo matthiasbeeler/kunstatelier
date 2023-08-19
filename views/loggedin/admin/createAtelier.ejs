@@ -33,6 +33,12 @@
         oninvalid="$(this).css('border', '2px solid red');" placeholder="Maximale Teilnehmerzahl" 
         class="standardInput">
         <div class="spacing5"></div>
+        <select name="activeSelect" class="activeSelect" id="activation">
+          <option value="" disabled selected hidden>Bitte Kurstyp wählen</option>
+          <option value="1">Kursleitung vor Ort</option>
+          <option value="0">Ohne Kursleitung vor Ort</option>
+      </select>
+        <div class="spacing5"></div>
       <input type="submit" class="submitButton button submit" value="Erstellen">
 
       </form>

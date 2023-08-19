@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 
 exports.updateAtelier = function(request, response, database){
     var id = request.body.id;
+    console.log(request.body)
     database.query(
         "SELECT *,Date_Format(date, '%d.%m.%Y') as dateNew FROM ateliers where CURDATE() <= date AND id = ?;",
         [id],
@@ -18,8 +19,8 @@ exports.updateAtelier = function(request, response, database){
                 if(results.length > 0){
               if(request.body.participantCapacity == "") request.body.participantCapacity = null;
               database.query(
-                "UPDATE ateliers SET date = ?, time = ?, subject = ?, furtherInformation = ?, participantCapacity=? WHERE id = ?",
-                [request.body.date.split(".")[2]+"-"+request.body.date.split(".")[1]+"-"+request.body.date.split(".")[0], request.body.time, request.body.subject, request.body.furtherInformation, request.body.participantCapacity, id],
+                "UPDATE ateliers SET date = ?, time = ?, subject = ?, furtherInformation = ?, participantCapacity=?,guidance=? WHERE id = ?",
+                [request.body.date.split(".")[2]+"-"+request.body.date.split(".")[1]+"-"+request.body.date.split(".")[0], request.body.time, request.body.subject, request.body.furtherInformation, request.body.participantCapacity,request.body.activeSelect, id],
                 function (err, results, fields) {
                     if (err) console.log(err);
                     if (err)
