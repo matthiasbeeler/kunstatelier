@@ -668,6 +668,7 @@ div.fileInput{
   width: 100%;
   height: 100vh;
   position: fixed;
+  z-index: 1;
   top: 0px;
   left: 0px;
   backdrop-filter: blur(5px);
@@ -740,7 +741,7 @@ border-radius: 20px;
 
 @media (min-width: 800px) {
 
-  .content, .cookieNoticeBackground {
+  .content, .cookieNoticeBackground, .overlay, .mainSelect {
     width: 30%;
     margin-left: 35%;
   }
