@@ -9,6 +9,8 @@
       <%- include('../../modules/top.ejs', {title: title, noLogo: true, noBack: false, backLink: "redirect(`/admin/participants`)"})%>
       <div class="spacing10"></div>
       <%if(!participant.active){%>
+        <div class="titleH4">Bei der Freischaltung erhält der Nutzer eine Bestätigungs-Email.</div>
+<div class="spacing5"></div>
         <div class="atelierContainer orangeShadowNoOffset warningContainer">
             <div class="warningSymbol">
                 <img src="/images/warning.svg" alt="">
