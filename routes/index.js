@@ -76,9 +76,8 @@ router.post('/signup', function(req, res, next) {
 });
 
 cron.schedule('0 52 03 * * *', function() {
-sendReminder(database)
+  sendReminder(database)
 });
-
 
 setInterval(function () {
   database.query('SELECT 1')

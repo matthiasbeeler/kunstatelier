@@ -17,6 +17,13 @@
         </div>
     </div>
       <% if(data.admin == true){%>
+        <% if(inactives == true){%>
+
+        <input type="submit" onclick="redirect('/admin/participants')"
+                class="subtileButton submitButton orangeShadowNoOffset button submit" value="Es gibt blockierte Nutzer">
+                <div class="spacing5"></div>
+                <%}%>
+
         <div onclick="redirect('/admin')" class="smallSubmitText submitButton submitDiv">
           Atelier verwalten
         </div>

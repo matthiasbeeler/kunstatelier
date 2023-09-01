@@ -53,11 +53,18 @@ router.get("/", function (req, res, next) {
     `SELECT *,Date_Format(date, '%d.%m.%Y') as dateNew FROM ateliers where CURDATE() <= date ORDER by date asc LIMIT 4;`,
     function (err, results, fields) {
       var ateliers = results;
-      if(err)  ateliers = []
+      if(err)  ateliers = [];
+      database.query(
+        `SELECT COUNT(*) as inactive FROM accounts where active = 0;`,
+        function (err, results, fields) {
+          var inactives = false;
+          if(results[0].inactive > 0) inactives = true;
   res.render("loggedin/home", {
     data: jwt.verify(req.cookies.NyvAuth, process.env.jwtSecret),
-    ateliers: ateliers
+    ateliers: ateliers,
+    inactives: inactives
   });
+});
 });
 
 });

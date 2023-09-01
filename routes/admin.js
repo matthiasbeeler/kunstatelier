@@ -58,7 +58,7 @@ router.get("/", (req, res) => {
 
 router.get("/participants", (req, res) => {
   database.query(
-    "SELECT * FROM accounts WHERE id NOT LIKE ?",
+    "SELECT * FROM accounts WHERE id NOT LIKE ? ORDER by active ASC",
     [jwt.verify(req.cookies.NyvAuth, process.env.jwtSecret).id],
     function (err, results, fields) {
       res.render("loggedin/admin/participants", { participants: results });

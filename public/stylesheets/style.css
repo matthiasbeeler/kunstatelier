@@ -15,6 +15,10 @@ box-shadow: 0px 0px 10px #5cff7f7b;
   box-shadow: 0px 0px 10px #ffa60096;
 }
 
+.orangeInnerShadowNoOffset{
+  box-shadow: inset 0px 0px 10px #ffa60096;
+}
+
 @font-face {
   font-family: sanFrancisco;
   src: url(/fonts/SF-Pro-Text-Black.otf);
@@ -204,6 +208,8 @@ select{
   cursor: pointer;
 }
 
+
+
 .submitDiv{
   width: 86%;
   text-align: center;
@@ -230,6 +236,10 @@ select{
 .subtileButton{
   background: transparent;
   color: var(--mainTextColour);
+}
+
+.whiteButtonBackground{
+  background-color: var(--mainBackgroundColour);
 }
 
 .subtileLink{
