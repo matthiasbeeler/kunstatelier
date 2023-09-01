@@ -1,6 +1,6 @@
 {
   "background_color": "#ececec",
-  "description": "",
+  "description": "Besetzungsplan für das Kunstatelier des Kollegi Schwyz",
   "dir": "ltr",
   "display": "standalone",
   "name": "Kunstatelier Kollegi",
@@ -9,7 +9,9 @@
   "short_name": "Kunstatelier",
   "start_url": "/",
   "theme_color": "#ececec",
-  "categories": [],
+  "categories": [
+    "productivity"
+  ],
   "screenshots": [],
   "icons": [
     {
