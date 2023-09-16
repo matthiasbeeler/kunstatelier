@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "ch.nyv.kunstatelier.twa",
+        "sha256_cert_fingerprints": ["CB:B8:76:57:1B:8A:48:B3:7F:A4:36:1D:31:50:41:26:33:47:BC:B6:9A:74:34:25:12:B2:33:70:54:99:AF:9C"]
+      }
+    }]
