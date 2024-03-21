@@ -22,7 +22,7 @@
     "morgan": "~1.9.1",
     "mysql2": "^3.5.0",
     "node-cron": "^3.0.2",
-    "nodemailer": "^6.9.3",
+    "nodemailer": "^6.9.11",
     "nodemon": "^2.0.22",
     "sharp": "^0.32.2",
     "uuid": "^9.0.0",
